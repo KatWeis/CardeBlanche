@@ -1,0 +1,9 @@
+1011
+Nature
+Reforestation
+All plants regrow.
+
+1012
+Nature
+Solar Flare
+Extreme sun activity has knocked out all electronics.
