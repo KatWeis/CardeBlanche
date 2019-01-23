@@ -1,9 +1,79 @@
 1011
 Nature
 Reforestation
-All plants regrow.
+All plants being to regrow.
 
 1012
 Nature
 Solar Flare
 Extreme sun activity has knocked out all electronics.
+
+1013
+Nature
+Earthquake
+The entire earth violently shakes.
+
+1015
+Tech
+Death Star
+That's no moon!
+
+1112
+Nature
+Super Plants
+The increased energy from the sun cause plants to grow to increased size.
+
+1113
+Tech
+Artificial Plants
+Mechanical plants that produce oxygen with little input.
+
+1114
+Nature
+Overgrowth
+Plants begin to grow over all buildings and vehicles.
+
+1115
+Nature
+Plant Uprising
+Weaponized plants begin to fight back and protect themselves.
+ 
+1116
+Nature
+Hybrids
+You create plant-human hybrids that can nearly sustain on sunlight alone.
+
+1213
+Tech
+Dyson Sphere
+You create a megastructure that completely encompasses a star and captures a large percentage of its power output.
+
+1214
+Tech
+Starship
+You have opened the door to the rest of the universe.
+
+1215
+DEATH
+Supernova
+Now why would you do that!
+
+1216
+Nature
+Unstoppable Mario
+DO DO DO DODODO DO.
+
+1314
+Tech
+Electric Vehicles
+Electric vehicles are now common across all markets.
+
+1315
+Tech
+LAZERS
+LAZERS. What more needs to be said.
+
+1316
+Tech
+Cyborg
+Humans have become integrated with technology.

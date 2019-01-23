@@ -4,20 +4,16 @@ using UnityEngine;
 using System.IO;
 using System;
 
-public class EventDictionary : MonoBehaviour {
+public class EventDictionary{
+
     Dictionary<int, Event> events = new Dictionary<int, Event>();
+    public Dictionary<int, Event> Events{ get { return events; } }
+
     // Use this for initialization
-    void Start () {
-        Debug.Log("Run");
-        ReadFile("Assets/Externals/events.txt");
-        
-        Debug.Log(events[0]);
+    public EventDictionary () {
+        ReadFile("Assets/Externals/events.txt");   
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     private void ReadFile(string filePath)
     {
@@ -36,5 +32,6 @@ public class EventDictionary : MonoBehaviour {
             events.Add(id, new Event(id, name, description,affinity));
             reader.ReadLine();
         }
+        reader.Close();      
     }
 }
