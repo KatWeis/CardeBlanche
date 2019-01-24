@@ -9,16 +9,29 @@ public class Card_UI : MonoBehaviour {
     private bool selected;
     private bool hovered;
 
-	// Use this for initialization
-	void Start () {
+    public float inactiveY = 135.0f;
+    public float activeY = 210.0f;
+    private float riseSpeed = 50.0f;
+
+    private float percent;
+    private float startTime;
+
+    private Vector3 downCardPos;
+    private Vector3 upCardPos;
+
+    // Use this for initialization
+    void Start () {
         ol = gameObject.GetComponent<Outline>();
         selected = false;
         hovered = false;
+
+        upCardPos = new Vector3(transform.position.x, activeY, transform.position.z);
+        downCardPos = new Vector3(transform.position.x, inactiveY, transform.position.z);
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
     /// <summary>
@@ -47,7 +60,10 @@ public class Card_UI : MonoBehaviour {
     public void StartHover()
     {
         hovered = true;
+        startTime = Time.time;
         HoverHighlight();
+        StopAllCoroutines();
+        StartCoroutine("BumpCard");
     }
 
     /// <summary>
@@ -56,7 +72,10 @@ public class Card_UI : MonoBehaviour {
     public void StopHover()
     {
         hovered = false;
+        startTime = Time.time;
         HoverHighlight();
+        StopAllCoroutines();
+        StartCoroutine("UnBumpCard");
     }
 
     /// <summary>
@@ -75,6 +94,46 @@ public class Card_UI : MonoBehaviour {
         {
             ol.effectColor = Color.black;
             ol.effectDistance = new Vector2(1, -1);
+        }
+    }
+
+    /// <summary>
+    /// Bumps the Card up above the others to emphasize selection
+    /// </summary>
+    IEnumerator BumpCard()
+    {
+
+        float currentTime = 0f;
+        // get the total angle we are traversing * degreesPerSecond
+        // to get totalTime we need to Lerp
+        float maxTime = .3f;
+
+        while (currentTime < maxTime)
+        {
+            yield return null;
+            currentTime += Time.deltaTime;
+            float yPos = Mathf.Lerp(inactiveY, activeY, currentTime / maxTime);
+            transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
+        }
+    }
+
+    /// <summary>
+    /// Bumps the Card up above the others to emphasize selection
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator UnBumpCard()
+    {
+        float currentTime = 0f;
+        // get the total angle we are traversing * degreesPerSecond
+        // to get totalTime we need to Lerp
+        float maxTime = .3f;
+
+        while (currentTime < maxTime)
+        {
+            yield return null;
+            currentTime += Time.deltaTime;
+            float yPos = Mathf.Lerp(activeY, inactiveY, currentTime / maxTime);
+            transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
         }
     }
 }
