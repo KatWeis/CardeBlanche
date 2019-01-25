@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Card_UI : MonoBehaviour {
 
     private Outline ol;
-    private bool selected;
+    public bool selected;
     private bool hovered;
 
     public float inactiveY = 135.0f;
@@ -18,6 +18,8 @@ public class Card_UI : MonoBehaviour {
 
     private Vector3 downCardPos;
     private Vector3 upCardPos;
+
+    public int cardID;
 
     // Use this for initialization
     void Start () {
@@ -45,13 +47,23 @@ public class Card_UI : MonoBehaviour {
         {
             ol.effectColor = Color.red;
             ol.effectDistance = new Vector2(6, 6);
+            GameObject.Find("GameManager").SendMessage("AddSelectedCard", cardID);
         }
         else
         {
             ol.effectColor = Color.black;
             ol.effectDistance = new Vector2(1, -1);
+            GameObject.Find("GameManager").SendMessage("ClearSelectedCard");
         }
         
+    }
+
+    public void ClearHighlight()
+    {
+        ol.effectColor = Color.black;
+        ol.effectDistance = new Vector2(1, -1);
+        GameObject.Find("GameManager").SendMessage("ClearSelectedCard");
+        StopHover();
     }
 
     /// <summary>
@@ -59,6 +71,7 @@ public class Card_UI : MonoBehaviour {
     /// </summary>
     public void StartHover()
     {
+        if (selected) return;
         hovered = true;
         startTime = Time.time;
         HoverHighlight();
@@ -71,6 +84,7 @@ public class Card_UI : MonoBehaviour {
     /// </summary>
     public void StopHover()
     {
+        if (selected) return;
         hovered = false;
         startTime = Time.time;
         HoverHighlight();
