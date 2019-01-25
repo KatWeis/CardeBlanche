@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     public int handSize = 7;// only amount that looks nice, DON'T CHANGE
     List<GameObject> hand = new List<GameObject>();
 
+    List<Card> cardsInHand = new List<Card>();
     List<Card> deck = new List<Card>();
     
     //Potential Solution
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour {
             card.transform.position = new Vector3(transform.position.x + offset, card.transform.position.y, card.transform.position.z);
             card.GetComponent<Card_UI>().cardID = deck[cardIndex].Id;
             hand.Add(card);
+            cardsInHand.Add(deck[cardIndex]);
         }
         
     }
@@ -84,27 +86,33 @@ public class GameManager : MonoBehaviour {
             selected[1] = Id;
 
             int combinedID = Convert.ToInt32("" + selected.Min() + selected.Max());
-            try
-            {
-                canvas.transform.GetChild(0).GetComponent<Text>().text = ed.Events[combinedID].Name;
-                canvas.transform.GetChild(1).GetComponent<Text>().text = ed.Events[combinedID].Desc;
-            }catch(Exception e)
-            {
-                canvas.transform.GetChild(0).GetComponent<Text>().text = "Dud";
-                canvas.transform.GetChild(1).GetComponent<Text>().text = "*Fart Noise*";
-            }
-
+            
+            List<int> removed = new List<int>();
             for(int i = 0; i < handSize; i++)
             {
                 if (hand[i].GetComponent<Card_UI>().selected == true)
                 {
                     hand[i].GetComponent<Card_UI>().selected = false;
                     hand[i].SendMessage("ClearHighlight");
-                }
-                
-
+                    removed.Add(i);
+                }          
             }
             
+            if (ed.Events.ContainsKey(combinedID))
+            {
+                canvas.transform.GetChild(0).GetComponent<Text>().text = ed.Events[combinedID].Name;
+                canvas.transform.GetChild(1).GetComponent<Text>().text = ed.Events[combinedID].Desc;
+                Destroy(hand[removed[0]]);
+                hand.RemoveAt(removed[0]);
+                Destroy(hand[removed[1] - 1]);
+                hand.RemoveAt(removed[1] - 1);
+                handSize -= 2;
+            }
+            else
+            {
+                canvas.transform.GetChild(0).GetComponent<Text>().text = "Dud";
+                canvas.transform.GetChild(1).GetComponent<Text>().text = "*Fart Noise*";
+            }
             //Debug.Log(ed.Events[combinedID].Name);
             //Debug.Log(ed.Events[combinedID].Desc);
         }
