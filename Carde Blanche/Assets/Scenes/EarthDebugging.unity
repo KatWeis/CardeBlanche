@@ -159,6 +159,52 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d5f9022756723d4a9b08f396e921609, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1001 &128040176
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4668891249017582, guid: 8d5f9022756723d4a9b08f396e921609, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.834
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668891249017582, guid: 8d5f9022756723d4a9b08f396e921609, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.731
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668891249017582, guid: 8d5f9022756723d4a9b08f396e921609, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -4.098
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668891249017582, guid: 8d5f9022756723d4a9b08f396e921609, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668891249017582, guid: 8d5f9022756723d4a9b08f396e921609, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668891249017582, guid: 8d5f9022756723d4a9b08f396e921609, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668891249017582, guid: 8d5f9022756723d4a9b08f396e921609, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668891249017582, guid: 8d5f9022756723d4a9b08f396e921609, type: 2}
+      propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1565186794537856, guid: 8d5f9022756723d4a9b08f396e921609, type: 2}
+      propertyPath: m_Name
+      value: SpawnVolume (23)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8d5f9022756723d4a9b08f396e921609, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &190896386
 Prefab:
   m_ObjectHideFlags: 0
@@ -1184,6 +1230,7 @@ MonoBehaviour:
   spawnList:
   - {fileID: 1152559811354050, guid: daf211cf0d2621f41945c2c9c216e5b2, type: 2}
   - {fileID: 1136251833901610, guid: fc0bc0070069ab84eaf5f40d02d3626c, type: 2}
+  spawnChance: 1
 --- !u!1001 &1895276157
 Prefab:
   m_ObjectHideFlags: 0
