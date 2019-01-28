@@ -18,3 +18,15 @@ Weapon
 
 16
 Human
+
+17
+Flight
+
+18
+Medicine
+
+19
+Death
+
+20
+Animals
