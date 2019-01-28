@@ -101,7 +101,7 @@ public class Card_UI : MonoBehaviour {
         if (selected) return;
         if (hovered)
         {
-            ol.effectColor = Color.blue;
+            ol.effectColor = new Color(0f, 0f, 1, 1);
             ol.effectDistance = new Vector2(6, 6);
         }
         else
