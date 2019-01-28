@@ -18,6 +18,21 @@ Tech
 Death Star
 That's no moon!
 
+1018
+Nature
+Cured-Earth
+You have eradicated all diseases from the world.
+
+1019
+DEATH
+Apocalypse
+You have ruined the Earth, every living thing has died.
+
+1020
+Nature
+Planet of the Apes
+Sentient apes have joined humans as a dominant species.
+
 1112
 Nature
 Super Plants
@@ -42,6 +57,21 @@ Weaponized plants begin to fight back and protect themselves.
 Nature
 Hybrids
 You create plant-human hybrids that can nearly sustain on sunlight alone.
+
+1117
+Nature
+Sky Garden
+Space on Earth has increased as farming has taken to the skys.
+
+1118
+Nature
+Ultra-Herbs
+Natural herbs have been combined with modern medicine.
+
+1119
+Nature
+Audrey II
+Mean green mother from outer space
 
 1213
 Tech
