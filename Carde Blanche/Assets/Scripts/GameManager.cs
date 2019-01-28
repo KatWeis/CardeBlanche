@@ -123,4 +123,28 @@ public class GameManager : MonoBehaviour {
     {
         selected[0] = -1;
     }
+
+    //Draw a card from the deck and add it to the players hand
+    public void DrawCard()
+    {
+        int cardIndex = UnityEngine.Random.Range(0, deck.Count - 1);
+        GameObject card = GameObject.Instantiate(cardPrefab, canvas.transform);
+        card.GetComponentInChildren<Text>().text = deck[cardIndex].Name;
+        card.GetComponentInChildren<RawImage>().texture = Resources.Load<Texture>("Beta_" + deck[cardIndex].Name);
+        card.GetComponent<Card_UI>().cardID = deck[cardIndex].Id;
+        hand.Add(card);
+        cardsInHand.Add(deck[cardIndex]);
+
+    }
+    //Start of single card creation to reduce code want to wait for panel and grid before integrating
+    /*public void createCard(int index)
+    {
+        GameObject card = GameObject.Instantiate(cardPrefab, canvas.transform);
+        card.GetComponentInChildren<Text>().text = deck[index].Name;
+        card.GetComponentInChildren<RawImage>().texture = Resources.Load<Texture>("Beta_" + deck[index].Name);
+        card.GetComponent<Card_UI>().cardID = deck[index].Id;
+        hand.Add(card);
+        cardsInHand.Add(deck[index]);
+    }
+    */
 }
