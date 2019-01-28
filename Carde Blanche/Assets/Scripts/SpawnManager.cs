@@ -26,6 +26,7 @@ public class SpawnManager : MonoBehaviour {
                 GameObject temp = (GameObject)Instantiate(spawnList[rand], spawnPoints[i].transform.position, Quaternion.identity);
                 temp.transform.LookAt(Vector3.zero);
                 temp.transform.Rotate(transform.right, -90);
+                temp.transform.Rotate(transform.up, Random.Range(0f, 359f));
             }
         }
 	}
