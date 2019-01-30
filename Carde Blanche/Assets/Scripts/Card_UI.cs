@@ -45,7 +45,7 @@ public class Card_UI : MonoBehaviour {
         selected = !selected;
         if(selected)
         {
-            ol.effectColor = Color.green;
+            ol.effectColor = Color.red;
             ol.effectDistance = new Vector2(6, 6);
             GameObject.Find("GameManager").SendMessage("AddSelectedCard", cardID);
         }
@@ -101,7 +101,7 @@ public class Card_UI : MonoBehaviour {
         if (selected) return;
         if (hovered)
         {
-            ol.effectColor = new Color(0f, 0f, 1, 1);
+            ol.effectColor = Color.green;
             ol.effectDistance = new Vector2(6, 6);
         }
         else
