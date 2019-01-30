@@ -850,6 +850,8 @@ MonoBehaviour:
   buildStep: 0.02
   fadeStep: 0.5
   maxBrightness: 2
+  shakeAmt: 2
+  shakeDur: 0.1
 --- !u!23 &244755447
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5491,6 +5493,16 @@ Prefab:
         type: 2}
       propertyPath: m_Shadows.m_Type
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 123930102904717216, guid: d8188f5b07cfec14290229a45a4a728f,
+        type: 2}
+      propertyPath: m_Flare
+      value: 
+      objectReference: {fileID: 12100000, guid: 09ebe82dbd1113c3d000dc0b8d76c639,
+        type: 2}
+    - target: {fileID: 1200434832029616, guid: d8188f5b07cfec14290229a45a4a728f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8188f5b07cfec14290229a45a4a728f, type: 2}

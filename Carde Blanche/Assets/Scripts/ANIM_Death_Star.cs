@@ -7,6 +7,8 @@ public class ANIM_Death_Star : MonoBehaviour {
     public float buildStep;
     public float fadeStep;
     public float maxBrightness;
+    public float shakeAmt;
+    public float shakeDur;
     
     private LensFlare lf;
     
@@ -27,6 +29,7 @@ public class ANIM_Death_Star : MonoBehaviour {
                 building = false;
                 fading = true;
                 gameObject.GetComponent<MeshRenderer>().enabled = true;
+                GameObject.Find("CamParent").GetComponent<ScreenShake>().ShakeCamera(shakeAmt, shakeDur);
             }
             else
             {
@@ -47,6 +50,11 @@ public class ANIM_Death_Star : MonoBehaviour {
             }
 
             lf.brightness = brightness;
+        }
+
+        if(!fading && !building)
+        {
+            Destroy(this);
         }
 	}
 }
