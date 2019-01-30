@@ -75,7 +75,8 @@ public class Card_UI : MonoBehaviour {
         hovered = true;
         startTime = Time.time;
         HoverHighlight();
-        StopAllCoroutines();
+        StopCoroutine("BumpCard");
+        StopCoroutine("UnBumpCard");
         StartCoroutine("BumpCard");
     }
 
@@ -88,7 +89,8 @@ public class Card_UI : MonoBehaviour {
         hovered = false;
         startTime = Time.time;
         HoverHighlight();
-        StopAllCoroutines();
+        StopCoroutine("BumpCard");
+        StopCoroutine("UnBumpCard");
         StartCoroutine("UnBumpCard");
     }
 
