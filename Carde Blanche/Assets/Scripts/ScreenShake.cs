@@ -39,9 +39,9 @@ public class ScreenShake : MonoBehaviour {
     public void ShakeCamera(float amount, float duration)
     {
 
-        shakeAmount += amount;//Add to the current amount.
+        shakeAmount = amount;//Add to the current amount.
         startAmount = shakeAmount;//Reset the start amount, to determine percentage.
-        shakeDuration += duration;//Add to the current time.
+        shakeDuration = duration;//Add to the current time.
         startDuration = shakeDuration;//Reset the start time.
 
         if (!isRunning) StartCoroutine(Shake());//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
