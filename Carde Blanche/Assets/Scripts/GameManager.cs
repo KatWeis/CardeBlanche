@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
     public GameObject cardPrefab;
     public GameObject canvas;
 
+    private GameObject panel;
+
     public int handSize = 7;// only amount that looks nice, DON'T CHANGE
     List<GameObject> hand = new List<GameObject>();
 
@@ -39,9 +41,11 @@ public class GameManager : MonoBehaviour {
         //selected[1] = deck[5].Id;
 
         //Combine the two ids into a string and then convert back to an int. to get the four digit event id
-       // int combinedID = Convert.ToInt32("" + selected.Min() + selected.Max());
-       // Debug.Log(ed.Events[combinedID].Name);
-       // Debug.Log(ed.Events[combinedID].Desc);
+        // int combinedID = Convert.ToInt32("" + selected.Min() + selected.Max());
+        // Debug.Log(ed.Events[combinedID].Name);
+        // Debug.Log(ed.Events[combinedID].Desc);
+
+        panel = canvas.transform.GetChild(2).gameObject;
 
         CreateHand();
     }
@@ -60,7 +64,7 @@ public class GameManager : MonoBehaviour {
             //Random selection
             //int cardIndex = UnityEngine.Random.Range(0, deck.Count - 1);
             int cardIndex = i;
-            GameObject card = GameObject.Instantiate(cardPrefab, canvas.transform);
+            GameObject card = GameObject.Instantiate(cardPrefab, panel.transform);
             card.GetComponentInChildren<Text>().text = deck[cardIndex].Name;
             card.GetComponentInChildren<RawImage>().texture = Resources.Load<Texture>("Beta_" + deck[cardIndex].Name);
 
@@ -128,7 +132,7 @@ public class GameManager : MonoBehaviour {
     public void DrawCard()
     {
         int cardIndex = UnityEngine.Random.Range(0, deck.Count - 1);
-        GameObject card = GameObject.Instantiate(cardPrefab, canvas.transform);
+        GameObject card = GameObject.Instantiate(cardPrefab, panel.transform);
         card.GetComponentInChildren<Text>().text = deck[cardIndex].Name;
         card.GetComponentInChildren<RawImage>().texture = Resources.Load<Texture>("Beta_" + deck[cardIndex].Name);
         card.GetComponent<Card_UI>().cardID = deck[cardIndex].Id;
@@ -139,7 +143,7 @@ public class GameManager : MonoBehaviour {
     //Start of single card creation to reduce code want to wait for panel and grid before integrating
     /*public void createCard(int index)
     {
-        GameObject card = GameObject.Instantiate(cardPrefab, canvas.transform);
+        GameObject card = GameObject.Instantiate(cardPrefab, panel.transform);
         card.GetComponentInChildren<Text>().text = deck[index].Name;
         card.GetComponentInChildren<RawImage>().texture = Resources.Load<Texture>("Beta_" + deck[index].Name);
         card.GetComponent<Card_UI>().cardID = deck[index].Id;
