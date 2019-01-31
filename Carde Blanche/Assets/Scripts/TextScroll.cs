@@ -43,7 +43,11 @@ public class TextScroll : MonoBehaviour {
             // Re-compute the width of the RectTransform if the text object has changed
             if(textMesh.text != cloneTextObject.text)
             {
+                //add a space to the end
+                textMesh.text += "\t";
+
                 width = textMesh.preferredWidth;
+
                 cloneTextObject.text = textMesh.text;
             }
 

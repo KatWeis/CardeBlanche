@@ -4,12 +4,16 @@ using UnityEngine;
 using System.Linq;
 using System;
 using UnityEngine.UI;
+using TMPro;
+
 public class GameManager : MonoBehaviour {
     EventDictionary ed = new EventDictionary();
     CardDictionary cd = new CardDictionary();
 
     public GameObject cardPrefab;
     public GameObject canvas;
+    public Text eventTitleUI;
+    public TextMeshProUGUI eventDescUI;
 
     private GameObject panel;
 
@@ -104,8 +108,11 @@ public class GameManager : MonoBehaviour {
             
             if (ed.Events.ContainsKey(combinedID))
             {
-                canvas.transform.GetChild(0).GetComponent<Text>().text = ed.Events[combinedID].Name;
-                canvas.transform.GetChild(1).GetComponent<Text>().text = ed.Events[combinedID].Desc;
+                //canvas.transform.GetChild(0).GetComponent<Text>().text = ed.Events[combinedID].Name;
+                //canvas.transform.GetChild(1).GetComponent<Text>().text = ed.Events[combinedID].Desc;
+                eventTitleUI.text = ed.Events[combinedID].Name.ToUpper();
+                eventDescUI.text = ed.Events[combinedID].Desc;
+
                 Destroy(hand[removed[0]]);
                 hand.RemoveAt(removed[0]);
                 Destroy(hand[removed[1] - 1]);
@@ -114,8 +121,10 @@ public class GameManager : MonoBehaviour {
             }
             else
             {
-                canvas.transform.GetChild(0).GetComponent<Text>().text = "Dud";
-                canvas.transform.GetChild(1).GetComponent<Text>().text = "*Fart Noise*";
+                eventTitleUI.text = "DUD";
+                eventDescUI.text = "*Fart Noise*";
+                //canvas.transform.GetChild(0).GetComponent<Text>().text = "Dud";
+                //canvas.transform.GetChild(1).GetComponent<Text>().text = "*Fart Noise*";
             }
             //Debug.Log(ed.Events[combinedID].Name);
             //Debug.Log(ed.Events[combinedID].Desc);
