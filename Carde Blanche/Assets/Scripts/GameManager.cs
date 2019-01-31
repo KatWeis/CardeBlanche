@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 
     private GameObject panel;
 
-    public int handSize = 7;// only amount that looks nice, DON'T CHANGE
+    public int handSize = 2;
     List<GameObject> hand = new List<GameObject>();
 
     List<Card> cardsInHand = new List<Card>();
@@ -34,11 +34,14 @@ public class GameManager : MonoBehaviour {
         //Arbitrary deck with all current cards
         deck.Add(cd.Cards[10]);
         deck.Add(cd.Cards[11]);
+        deck.Add(cd.Cards[10]);
         deck.Add(cd.Cards[12]);
-        deck.Add(cd.Cards[13]);
-        deck.Add(cd.Cards[14]);
+        deck.Add(cd.Cards[10]);
         deck.Add(cd.Cards[15]);
-        deck.Add(cd.Cards[16]);
+        deck.Add(cd.Cards[10]);
+        deck.Add(cd.Cards[15]);
+        deck.Add(cd.Cards[10]);
+        deck.Add(cd.Cards[15]);
 
         //Arbitrary selected two cards
         //selected[0] = deck[0].Id;
@@ -61,25 +64,13 @@ public class GameManager : MonoBehaviour {
 
     private void CreateHand()
     {
-        int totalWidth = handSize * 155;
+        //int totalWidth = handSize * 155;
 
         for (int i = 0; i < handSize; i++)
         {
-            //Random selection
-            //int cardIndex = UnityEngine.Random.Range(0, deck.Count - 1);
-            int cardIndex = i;
-            GameObject card = GameObject.Instantiate(cardPrefab, panel.transform);
-            card.GetComponentInChildren<Text>().text = deck[cardIndex].Name;
-            card.GetComponentInChildren<RawImage>().texture = Resources.Load<Texture>("Beta_" + deck[cardIndex].Name);
-
-            //offset the card
-            float offset = (totalWidth / handSize) + 155 * i;
-            card.transform.position = new Vector3(transform.position.x + offset, card.transform.position.y, card.transform.position.z);
-            card.GetComponent<Card_UI>().cardID = deck[cardIndex].Id;
-            hand.Add(card);
-            cardsInHand.Add(deck[cardIndex]);
+            DrawCard();
+            handSize--;
         }
-        
     }
 
     public void AddSelectedCard(int Id)
@@ -118,6 +109,8 @@ public class GameManager : MonoBehaviour {
                 Destroy(hand[removed[1] - 1]);
                 hand.RemoveAt(removed[1] - 1);
                 handSize -= 2;
+                string name = ed.Events[combinedID].Name;
+                this.gameObject.GetComponent<EventManager>().SendMessage(name.Replace(" ", ""));
             }
             else
             {
@@ -126,6 +119,8 @@ public class GameManager : MonoBehaviour {
                 //canvas.transform.GetChild(0).GetComponent<Text>().text = "Dud";
                 //canvas.transform.GetChild(1).GetComponent<Text>().text = "*Fart Noise*";
             }
+            DrawCard();
+            DrawCard();
             //Debug.Log(ed.Events[combinedID].Name);
             //Debug.Log(ed.Events[combinedID].Desc);
         }
@@ -140,17 +135,14 @@ public class GameManager : MonoBehaviour {
     //Draw a card from the deck and add it to the players hand
     public void DrawCard()
     {
-        int cardIndex = UnityEngine.Random.Range(0, deck.Count - 1);
-        GameObject card = GameObject.Instantiate(cardPrefab, panel.transform);
-        card.GetComponentInChildren<Text>().text = deck[cardIndex].Name;
-        card.GetComponentInChildren<RawImage>().texture = Resources.Load<Texture>("Beta_" + deck[cardIndex].Name);
-        card.GetComponent<Card_UI>().cardID = deck[cardIndex].Id;
-        hand.Add(card);
-        cardsInHand.Add(deck[cardIndex]);
-
+        //int cardIndex = UnityEngine.Random.Range(0, deck.Count - 1);
+        int cardIndex = 0;
+        CreateCard(cardIndex);
+        deck.RemoveAt(cardIndex);
+        handSize++;
     }
     //Start of single card creation to reduce code want to wait for panel and grid before integrating
-    /*public void createCard(int index)
+    public void CreateCard(int index)
     {
         GameObject card = GameObject.Instantiate(cardPrefab, panel.transform);
         card.GetComponentInChildren<Text>().text = deck[index].Name;
@@ -159,5 +151,5 @@ public class GameManager : MonoBehaviour {
         hand.Add(card);
         cardsInHand.Add(deck[index]);
     }
-    */
+    
 }
