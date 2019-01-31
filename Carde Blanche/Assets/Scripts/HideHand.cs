@@ -1,0 +1,75 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class HideHand : MonoBehaviour{
+
+    private GameObject hand;
+    private bool isHandVis;
+
+    private float startY;
+    private float endY;
+
+    private float upY = 135; // Y coordinate when hand is visible
+    private float downY = -210; // Y coordinate when hand is hidden
+
+    // Use this for initialization
+    void Start () {
+        isHandVis = true;
+
+        hand = transform.parent.GetChild(2).gameObject;
+    }
+	
+	// Update is called once per frame
+	void Update () {
+        MoveHand();
+	}
+
+    /// <summary>
+    /// Checks if the click was using the right mouse button
+    /// Slides the hand panel down or up depending on its current state
+    /// </summary>
+    public void MoveHand()
+    {
+        if(!Input.GetMouseButtonDown(1))
+        {
+            return;
+        }
+        isHandVis = !isHandVis;
+
+        IEnumerator sh = SlideHand(isHandVis);
+        StartCoroutine(sh);
+    }
+
+    /// <summary>
+    /// Bumps the Card up above the others to emphasize selection
+    /// </summary>
+    IEnumerator SlideHand(bool slideUp)
+    {
+        if(slideUp)
+        {
+            startY = downY;
+            endY = upY;
+        }
+        else
+        {
+            startY = upY;
+            endY = downY;
+        }
+
+
+        float currentTime = 0f;
+        // get the total angle we are traversing * degreesPerSecond
+        // to get totalTime we need to Lerp
+        float maxTime = .5f;
+
+        while (currentTime < maxTime)
+        {
+            yield return null;
+            currentTime += Time.deltaTime;
+            float yPos = Mathf.Lerp(startY, endY, currentTime / maxTime);
+            hand.transform.position = new Vector3(hand.transform.position.x, yPos, hand.transform.position.z);
+        }
+    }
+}
