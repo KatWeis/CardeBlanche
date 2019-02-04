@@ -60,13 +60,25 @@ public class EventManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.X))
         {
             WorldWar3();
-
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            DeathRay();
         }
     }
 
     public void DeathStar()
     {
-        Instantiate(deathStar, new Vector3(8, 0, 0), Quaternion.identity);
+        Instantiate(deathStar, new Vector3(12f, 0, 0), Quaternion.identity);
+    }
+
+    public void DeathRay()
+    {
+        GameObject death = GameObject.FindGameObjectWithTag("DeathStar");
+        if(death != null)
+        {
+            death.transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
 
     public void Reforestation()

@@ -52,8 +52,10 @@ public class ANIM_Death_Star : MonoBehaviour {
             lf.brightness = brightness;
         }
 
+
         if(!fading && !building)
         {
+            gameObject.GetComponent<SphereCollider>().enabled = true;
             Destroy(this);
         }
 	}
