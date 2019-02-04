@@ -13,8 +13,11 @@ public class EventManager : MonoBehaviour {
     public CanvasGroup AllCanvas;
     public VideoPlayer video;
     public GameObject lazers;
+
     public GameObject mario;
-    // vars used for different animations
+
+    public GameObject explosion;
+
 
 
     // Use this for initialization
@@ -48,9 +51,16 @@ public class EventManager : MonoBehaviour {
         {
             Lazers();
         }
+
         if (Input.GetKeyDown(KeyCode.M))
         {
             StarMario();
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            WorldWar3();
+
         }
     }
 
@@ -104,6 +114,23 @@ public class EventManager : MonoBehaviour {
     public void StarMario()
     {
         Instantiate(mario, Vector3.zero, Quaternion.identity);
+    }
+
+    public void WorldWar3()
+    {
+        GameObject[] spawns = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        IEnumerator co = Explosions(spawns);
+        StartCoroutine(co);
+    }
+
+    IEnumerator Explosions(GameObject[] spawn)
+    {
+        while(true)
+        {
+            int rand = Random.Range(0, spawn.Length);
+            Instantiate(explosion, spawn[rand].transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 
     IEnumerator FadeCanvas(float time)
