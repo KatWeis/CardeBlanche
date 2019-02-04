@@ -38,10 +38,10 @@ public class GameManager : MonoBehaviour {
         deck.Add(cd.Cards[12]);
         deck.Add(cd.Cards[10]);
         deck.Add(cd.Cards[15]);
-        
-        
-        
-        
+        deck.Add(cd.Cards[10]);
+        deck.Add(cd.Cards[15]);
+        deck.Add(cd.Cards[10]);
+        deck.Add(cd.Cards[15]);
 
         //Arbitrary selected two cards
         //selected[0] = deck[0].Id;
@@ -136,17 +136,10 @@ public class GameManager : MonoBehaviour {
     public void DrawCard()
     {
         //int cardIndex = UnityEngine.Random.Range(0, deck.Count - 1);
-        if(deck.Count != 0)
-        {
-            int cardIndex = 0;
-            CreateCard(cardIndex);
-            deck.RemoveAt(cardIndex);
-            handSize++;
-        }
-        
-        
-        
-        
+        int cardIndex = 0;
+        CreateCard(cardIndex);
+        deck.RemoveAt(cardIndex);
+        handSize++;
     }
     //Start of single card creation to reduce code want to wait for panel and grid before integrating
     public void CreateCard(int index)
