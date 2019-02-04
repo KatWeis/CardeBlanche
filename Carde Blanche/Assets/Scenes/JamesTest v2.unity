@@ -5492,6 +5492,10 @@ MonoBehaviour:
   forestPrefab: {fileID: 1578281213945532, guid: c5c59ad55a4764c4f8c861b63ac04718,
     type: 2}
   solarFlare: {fileID: 490262354}
+  SkyrimVideoGroup: {fileID: 0}
+  AllCanvas: {fileID: 0}
+  video: {fileID: 0}
+  lazers: {fileID: 0}
 --- !u!114 &1821164907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5630,6 +5634,11 @@ Prefab:
       propertyPath: eventDescUI
       value: 
       objectReference: {fileID: 1781203865}
+    - target: {fileID: 114572258552509464, guid: 576217e76542cc349b8e64af46cc1381,
+        type: 2}
+      propertyPath: handSize
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576217e76542cc349b8e64af46cc1381, type: 2}
   m_IsPrefabAsset: 0
@@ -6246,6 +6255,11 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224735516887056846, guid: 2b7aba4343e5c734e8dd4c26a23bc9f1,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b7aba4343e5c734e8dd4c26a23bc9f1, type: 2}

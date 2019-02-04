@@ -30,18 +30,35 @@ public class GameManager : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        
         selected[0] = -1;
         //Arbitrary deck with all current cards
-        deck.Add(cd.Cards[10]);
-        deck.Add(cd.Cards[11]);
-        deck.Add(cd.Cards[10]);
-        deck.Add(cd.Cards[12]);
-        deck.Add(cd.Cards[10]);
-        deck.Add(cd.Cards[15]);
-        deck.Add(cd.Cards[10]);
-        deck.Add(cd.Cards[15]);
-        deck.Add(cd.Cards[10]);
-        deck.Add(cd.Cards[15]);
+        //deck.Add(cd.Cards[10]);
+        //deck.Add(cd.Cards[11]);
+        //deck.Add(cd.Cards[10]);
+        //deck.Add(cd.Cards[12]);
+        //deck.Add(cd.Cards[10]);
+        //deck.Add(cd.Cards[15]);
+        //deck.Add(cd.Cards[10]);
+        //deck.Add(cd.Cards[15]);
+        //deck.Add(cd.Cards[10]);
+        //deck.Add(cd.Cards[15]);
+
+        for(int i = 0; i < 4; i++)
+        {
+            deck.Add(cd.Cards[10]);
+            deck.Add(cd.Cards[11]);
+            deck.Add(cd.Cards[12]);
+            deck.Add(cd.Cards[13]);
+            deck.Add(cd.Cards[14]);
+            deck.Add(cd.Cards[15]);
+            deck.Add(cd.Cards[16]);
+            deck.Add(cd.Cards[17]);
+            deck.Add(cd.Cards[18]);
+            deck.Add(cd.Cards[19]);
+            deck.Add(cd.Cards[20]);
+        }
+        Shuffle(deck);
 
         //Arbitrary selected two cards
         //selected[0] = deck[0].Id;
@@ -99,8 +116,6 @@ public class GameManager : MonoBehaviour {
             
             if (ed.Events.ContainsKey(combinedID))
             {
-                //canvas.transform.GetChild(0).GetComponent<Text>().text = ed.Events[combinedID].Name;
-                //canvas.transform.GetChild(1).GetComponent<Text>().text = ed.Events[combinedID].Desc;
                 eventTitleUI.text = ed.Events[combinedID].Name.ToUpper();
                 eventDescUI.text = ed.Events[combinedID].Desc;
 
@@ -110,17 +125,25 @@ public class GameManager : MonoBehaviour {
                 hand.RemoveAt(removed[1] - 1);
                 handSize -= 2;
                 string name = ed.Events[combinedID].Name;
-                this.gameObject.GetComponent<EventManager>().SendMessage(name.Replace(" ", ""));
+                
+                try
+                {
+                    this.gameObject.GetComponent<EventManager>().SendMessage(name.Replace(" ", ""),null, SendMessageOptions.DontRequireReceiver);
+                }
+                catch (Exception e)
+                {
+                    
+                }
+                
+                DrawCard();
+                DrawCard();
             }
             else
             {
                 eventTitleUI.text = "DUD";
                 eventDescUI.text = "*Fart Noise*";
-                //canvas.transform.GetChild(0).GetComponent<Text>().text = "Dud";
-                //canvas.transform.GetChild(1).GetComponent<Text>().text = "*Fart Noise*";
             }
-            DrawCard();
-            DrawCard();
+            
             //Debug.Log(ed.Events[combinedID].Name);
             //Debug.Log(ed.Events[combinedID].Desc);
         }
@@ -151,5 +174,16 @@ public class GameManager : MonoBehaviour {
         hand.Add(card);
         cardsInHand.Add(deck[index]);
     }
-    
+    public void Shuffle(List<Card> ts)
+    {
+        var count = ts.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i)
+        {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = ts[i];
+            ts[i] = ts[r];
+            ts[r] = tmp;
+        }
+    }
 }
