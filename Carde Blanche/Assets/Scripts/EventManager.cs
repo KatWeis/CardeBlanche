@@ -13,6 +13,7 @@ public class EventManager : MonoBehaviour {
     public CanvasGroup AllCanvas;
     public VideoPlayer video;
     public GameObject lazers;
+    public GameObject explosion;
     // vars used for different animations
 
 
@@ -46,6 +47,10 @@ public class EventManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.L))
         {
             Lazers();
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            WorldWar3();
         }
     }
 
@@ -95,6 +100,23 @@ public class EventManager : MonoBehaviour {
     public void Lazers()
     {
         Instantiate(lazers, Vector3.zero, Quaternion.identity);
+    }
+
+    public void WorldWar3()
+    {
+        GameObject[] spawns = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        IEnumerator co = Explosions(spawns);
+        StartCoroutine(co);
+    }
+
+    IEnumerator Explosions(GameObject[] spawn)
+    {
+        while(true)
+        {
+            int rand = Random.Range(0, spawn.Length);
+            Instantiate(explosion, spawn[rand].transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 
     IEnumerator FadeCanvas(float time)
