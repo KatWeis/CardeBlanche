@@ -58,6 +58,10 @@ public class Card_UI : MonoBehaviour {
         
     }
 
+    /// <summary>
+    /// Clears all highlights from the card
+    /// Only called from other scripts when we don't want circular references of methods
+    /// </summary>
     public void ClearHighlight()
     {
         ol.effectColor = Color.black;
