@@ -13,6 +13,7 @@ public class EventManager : MonoBehaviour {
     public CanvasGroup AllCanvas;
     public VideoPlayer video;
     public GameObject lazers;
+    public GameObject mario;
     // vars used for different animations
 
 
@@ -46,6 +47,10 @@ public class EventManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.L))
         {
             Lazers();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            StarMario();
         }
     }
 
@@ -95,6 +100,10 @@ public class EventManager : MonoBehaviour {
     public void Lazers()
     {
         Instantiate(lazers, Vector3.zero, Quaternion.identity);
+    }
+    public void StarMario()
+    {
+        Instantiate(mario, Vector3.zero, Quaternion.identity);
     }
 
     IEnumerator FadeCanvas(float time)
