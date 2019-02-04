@@ -47,7 +47,12 @@ public class HideHand : MonoBehaviour{
     /// </summary>
     IEnumerator SlideHand(bool slideUp)
     {
-        if(slideUp)
+        //DeselectAllCards();
+
+        //StopCoroutine("BumpCard");
+        //StopCoroutine("UnBumpCard");
+
+        if (slideUp)
         {
             startY = downY;
             endY = upY;
@@ -70,6 +75,19 @@ public class HideHand : MonoBehaviour{
             currentTime += Time.deltaTime;
             float yPos = Mathf.Lerp(startY, endY, currentTime / maxTime);
             hand.transform.position = new Vector3(hand.transform.position.x, yPos, hand.transform.position.z);
+        }
+    }
+
+    /// <summary>
+    /// Sets all cards' selected variable to false
+    /// Clears Highlights
+    /// </summary>
+    private void DeselectAllCards()
+    {
+        for (int i = 0; i < hand.transform.childCount; i++)
+        {
+            hand.transform.GetChild(i).GetComponent<Card_UI>().selected = false;
+            hand.transform.GetChild(i).GetComponent<Card_UI>().SendMessage("ClearHighlight");
         }
     }
 }

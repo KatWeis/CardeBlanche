@@ -30,7 +30,10 @@ public class TextScroll : MonoBehaviour {
         StartCoroutine("Scroll");
     }
 
-    // Use this for initialization
+    /// <summary>
+    /// Scrolls the text across the screen
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Scroll()
     {
         float width = textMesh.preferredWidth;
