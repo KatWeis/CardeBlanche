@@ -35,7 +35,7 @@ public class FlareEffect : MonoBehaviour {
         while(f.brightness < bright)
         {
             growPercent = timer / grow;
-            float res = Mathf.Lerp(f.brightness, bright, growPercent);
+            float res = Mathf.Lerp(1, bright, growPercent);
             timer += Time.deltaTime;
             f.brightness = res;
 

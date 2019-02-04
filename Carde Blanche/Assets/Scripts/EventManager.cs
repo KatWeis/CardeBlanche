@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class EventManager : MonoBehaviour {
     // references to objects to spawn
     public GameObject deathStar;
     public GameObject forestPrefab;
     public GameObject solarFlare;
-
+    public CanvasGroup SkyrimVideoGroup;
+    public CanvasGroup AllCanvas;
+    public VideoPlayer video;
+    public GameObject lazers;
     // vars used for different animations
 
 
@@ -30,6 +35,18 @@ public class EventManager : MonoBehaviour {
         {
             SolarFlare();
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Earthquake();
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Supernova();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Lazers();
+        }
     }
 
     public void DeathStar()
@@ -51,6 +68,65 @@ public class EventManager : MonoBehaviour {
         p.Play();
         IEnumerator co = PlaySolarFlare(p);
         StartCoroutine(co);
+    }
+
+    public void Earthquake()
+    {
+        GameObject.Find("CamParent").GetComponent<ScreenShake>().ShakeCamera(30f, 5f);
+    }
+
+    public void Supernova()
+    {
+        // disable the camera script and enable the cutscene camera
+        GameObject cam = GameObject.Find("Main Camera");
+        cam.GetComponent<OrbitCamera>().enabled = false;
+        cam.GetComponent<ANIM_Cam_Supernova>().enabled = true;
+        GameObject sun = GameObject.Find("Sun");
+        sun.GetComponent<IdleOrbit>().enabled = false;
+        sun.GetComponentInChildren<FlareEffect>().Flare(200f, 10f, 0.1f, 200f, 0f);
+        GameObject.Find("Earth").GetComponent<SphereCollider>().enabled = false;
+        GameObject.Find("CamParent").GetComponent<ScreenShake>().ShakeCamera(5f, 10f);
+        //IEnumerator fade = FadeCanvas(2f);
+        //StartCoroutine(fade);
+        IEnumerator show = ShowVideo(6f, 7f);
+        StartCoroutine(show);
+    }
+
+    public void Lazers()
+    {
+        Instantiate(lazers, Vector3.zero, Quaternion.identity);
+    }
+
+    IEnumerator FadeCanvas(float time)
+    {
+        float timer = 0f;
+        float amount = 0f;
+        
+        while (timer < time)
+        {
+            amount = timer / time;
+            AllCanvas.alpha = Mathf.Lerp(1f, 0f, amount);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    IEnumerator ShowVideo(float waitTime, float fadeTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        SkyrimVideoGroup.alpha = 1;
+
+        Image i = GameObject.Find("SkyrimOverlay").GetComponent<Image>();
+        float timer = 0f;
+        float percent = 0f;
+        video.Play();
+        while(timer < fadeTime)
+        {
+            percent = timer / fadeTime;
+            i.color = new Color(255f, 255f, 255f, Mathf.Lerp(1f, 0f, percent));
+            timer += Time.deltaTime;
+            yield return null;
+        }
     }
 
     IEnumerator PlaySolarFlare(ParticleSystem pSys)

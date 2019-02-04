@@ -20,7 +20,7 @@ public class OrbitCamera : MonoBehaviour {
     public float maxZoom = 18f;
     public float zoomAmt = 2f;
 
-
+    private bool autoOrbit = true;
     // Use this for initialization
     void Start () {
         // set initial position
@@ -30,12 +30,13 @@ public class OrbitCamera : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
         // only idle orbit when not holding left click
-        if(!Input.GetMouseButton(0))
+        if(!Input.GetMouseButton(0) && autoOrbit)
             offset = IdleOrbit() * offset;
         // if holding left click, rotate the cam
         if(Input.GetMouseButton(0))
             offset = MouseOrbit() * offset;
 
+        if (Input.GetKeyDown(KeyCode.O)) autoOrbit = !autoOrbit;
         // check for zooming
         Zoom();
 
