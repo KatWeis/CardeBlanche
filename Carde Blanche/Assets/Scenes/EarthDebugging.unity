@@ -7645,7 +7645,7 @@ MonoBehaviour:
   AllCanvas: {fileID: 0}
   video: {fileID: 226461525}
   lazers: {fileID: 1033853713352118, guid: 75b528fea8f4f5d48a13765879e49b62, type: 2}
-  mario: {fileID: 0}
+  mario: {fileID: 1328190870468344, guid: 780bc0815164e81468451e4b5a01c93c, type: 2}
   explosion: {fileID: 1112970226493486, guid: d8746cc83c556db4eb521e83eef16bf7, type: 2}
 --- !u!114 &1821164907
 MonoBehaviour:

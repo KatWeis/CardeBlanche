@@ -128,7 +128,7 @@ public class EventManager : MonoBehaviour {
     }
     public void StarMario()
     {
-        Instantiate(mario, Vector3.zero, Quaternion.identity);
+        Instantiate(mario, new Vector3(-7f, 0f, 0f), Quaternion.identity);
     }
 
     public void WorldWar3()
