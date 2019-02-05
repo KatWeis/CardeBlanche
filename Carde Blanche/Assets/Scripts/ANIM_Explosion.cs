@@ -25,7 +25,7 @@ public class ANIM_Explosion : MonoBehaviour {
         {
             percent = timer / growtime;
             transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(maxSize, maxSize, maxSize), percent);
-            lf.brightness = Mathf.Lerp(0f, 1f, percent);
+            lf.brightness = Mathf.Lerp(0f, 0.5f, percent);
             transform.Rotate(rotAngle, 2.0f);
             timer += Time.deltaTime;
             yield return null;
@@ -37,7 +37,7 @@ public class ANIM_Explosion : MonoBehaviour {
         {
             percent = timer / growtime;
             transform.localScale = Vector3.Lerp(new Vector3(maxSize, maxSize, maxSize), Vector3.zero, percent);
-            lf.brightness = Mathf.Lerp(1f, 0f, percent);
+            lf.brightness = Mathf.Lerp(0.5f, 0f, percent);
             transform.Rotate(rotAngle, 2.0f);
             timer += Time.deltaTime;
             yield return null;

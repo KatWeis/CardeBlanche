@@ -19,6 +19,7 @@ public class SpawnManager : MonoBehaviour {
 
         for(int i = 0; i < spawnPoints.Length; i++)
         {
+            spawnPoints[i].transform.position = spawnPoints[i].transform.position.normalized * 5.001f;
             float chance = Random.Range(0.01f, 1f);
             if(chance <= spawnChance)
             {

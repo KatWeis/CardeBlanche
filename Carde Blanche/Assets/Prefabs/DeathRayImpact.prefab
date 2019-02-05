@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4053924784198326}
   - component: {fileID: 198289316769842396}
   - component: {fileID: 199530202658914272}
+  - component: {fileID: 123277925053151044}
+  - component: {fileID: 114755251884396882}
   m_Layer: 0
   m_Name: DeathRayImpact
   m_TagString: Untagged
@@ -41,6 +43,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90.58, z: 0}
+--- !u!114 &114755251884396882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757071859937030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ceb567b4a4f6742a7d707b2a9fabbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!123 &123277925053151044
+LensFlare:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757071859937030}
+  m_Enabled: 1
+  m_Flare: {fileID: 12100000, guid: 09ebe82dbd1113c3d000dc0b8d76c639, type: 2}
+  m_Color: {r: 0.9056604, g: 0.8767768, b: 0.6963332, a: 0}
+  m_Brightness: 0
+  m_FadeSpeed: 20
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 6
+  m_Directional: 0
 --- !u!198 &198289316769842396
 ParticleSystem:
   m_ObjectHideFlags: 1
