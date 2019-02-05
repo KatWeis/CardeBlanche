@@ -11,6 +11,7 @@ public class EmitDeathRay : MonoBehaviour {
     private bool flare = false;
     public GameObject explosions;
     public GameObject earthExplosion;
+    public GameObject ast;
     public GameObject cam;
     RaycastHit hit;
     GameObject g;
@@ -33,6 +34,7 @@ public class EmitDeathRay : MonoBehaviour {
             for(int i = 0; i < 7; i++)
             {
                 Instantiate(earthExplosion, Random.insideUnitSphere * 5f, Quaternion.identity);
+                Instantiate(ast, Random.insideUnitSphere * 5f, Quaternion.identity);
             }
             for(int i = 0; i < props.Length; i++)
             {
