@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4668891249017582}
   - component: {fileID: 33265331191568644}
   - component: {fileID: 23506749256070826}
-  - component: {fileID: 65632702892715636}
   m_Layer: 9
   m_Name: SpawnVolume
   m_TagString: SpawnPoint
@@ -84,15 +83,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1565186794537856}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65632702892715636
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1565186794537856}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

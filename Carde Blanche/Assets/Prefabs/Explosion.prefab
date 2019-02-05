@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4417118044650476}
   - component: {fileID: 33106989632752240}
   - component: {fileID: 23167242299981770}
-  - component: {fileID: 135772420637218898}
   - component: {fileID: 114692988814517110}
+  - component: {fileID: 123493503112649174}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -98,15 +98,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   growtime: 2
   maxSize: 1
---- !u!135 &135772420637218898
-SphereCollider:
+--- !u!123 &123493503112649174
+LensFlare:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1112970226493486}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Enabled: 0
+  m_Flare: {fileID: 12100000, guid: 09ebe82dbd1113c3d000dc0b8d76c639, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Brightness: 1
+  m_FadeSpeed: 20
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 6
+  m_Directional: 0

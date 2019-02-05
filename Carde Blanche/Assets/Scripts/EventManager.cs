@@ -78,6 +78,9 @@ public class EventManager : MonoBehaviour {
         if(death != null)
         {
             death.transform.GetChild(0).gameObject.SetActive(true);
+            death.transform.GetChild(0).GetComponent<FlareEffect>().Flare(0.75f, 2f, 1f, 0.75f, 1f, 0f);
+            death.GetComponent<IdleOrbit>().enabled = false;
+            death.transform.GetChild(1).gameObject.SetActive(true);
         }
     }
 
@@ -110,7 +113,7 @@ public class EventManager : MonoBehaviour {
         cam.GetComponent<ANIM_Cam_Supernova>().enabled = true;
         GameObject sun = GameObject.Find("Sun");
         sun.GetComponent<IdleOrbit>().enabled = false;
-        sun.GetComponentInChildren<FlareEffect>().Flare(200f, 10f, 0.1f, 200f, 0f);
+        sun.GetComponentInChildren<FlareEffect>().Flare(150f, 6f, 5f, 0f, 0f);
         GameObject.Find("Earth").GetComponent<SphereCollider>().enabled = false;
         GameObject.Find("CamParent").GetComponent<ScreenShake>().ShakeCamera(5f, 10f);
         //IEnumerator fade = FadeCanvas(2f);

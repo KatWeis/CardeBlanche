@@ -9,6 +9,7 @@ public class FlareEffect : MonoBehaviour {
     private float shrink;
     private float end;
     private float wait;
+    private float start = 1f;
     private LensFlare f;
 
 	// Use this for initialization
@@ -28,14 +29,31 @@ public class FlareEffect : MonoBehaviour {
         StartCoroutine(co);
     }
 
+    public void Flare(float maxBrightness, float growTime, float shrinkTime, float endBrightness, float waitTime, float startSize)
+    {
+        bright = maxBrightness;
+        grow = growTime;
+        shrink = shrinkTime;
+        end = endBrightness;
+        wait = waitTime;
+        start = startSize;
+
+        IEnumerator co = Effect();
+        StartCoroutine(co);
+    }
+
     IEnumerator Effect()
     {
         float growPercent = 0f;
         float timer = 0;
+        if(f == null)
+        {
+            yield return null;
+        }
         while(f.brightness < bright)
         {
             growPercent = timer / grow;
-            float res = Mathf.Lerp(1, bright, growPercent);
+            float res = Mathf.Lerp(start, bright, growPercent);
             timer += Time.deltaTime;
             f.brightness = res;
 
@@ -49,7 +67,7 @@ public class FlareEffect : MonoBehaviour {
         while (f.brightness > end)
         {
             shrinkPercent = timer / shrink;
-            float res = Mathf.Lerp(f.brightness, end, shrinkPercent);
+            float res = Mathf.Lerp(bright, end, shrinkPercent);
             timer += Time.deltaTime;
             f.brightness = res;
 
