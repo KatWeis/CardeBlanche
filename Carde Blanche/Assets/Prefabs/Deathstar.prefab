@@ -266,6 +266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosions: {fileID: 1757071859937030, guid: 49e966999df1024499dbabfde61ded3b, type: 2}
+  earthExplosion: {fileID: 1610427624466734, guid: 379b14d29bd1e3e45bbed573e33db183,
+    type: 2}
   cam: {fileID: 1338206655015506}
 --- !u!114 &114511132988014836
 MonoBehaviour:
