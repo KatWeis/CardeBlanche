@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     EventDictionary ed = new EventDictionary();
@@ -26,8 +27,9 @@ public class GameManager : MonoBehaviour {
     private bool isDeath = false;
     private int nature = 0;
     private int tech = 0;
-
-
+    private GameObject image;
+    private int maxCombo = 5;
+    private int currenyCombo = 0;
     //Potential Solution
     //Card[] selected = new Card[2];
 
@@ -35,7 +37,8 @@ public class GameManager : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        
+        image = GameObject.Find("EndingImage");
+        image.SetActive(false);
         selected[0] = -1;
         //Arbitrary deck with all current cards
         //deck.Add(cd.Cards[10]);
@@ -49,7 +52,7 @@ public class GameManager : MonoBehaviour {
         //deck.Add(cd.Cards[10]);
         //deck.Add(cd.Cards[15]);
 
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 2; i++)
         {
             deck.Add(cd.Cards[10]);
             deck.Add(cd.Cards[11]);
@@ -62,6 +65,16 @@ public class GameManager : MonoBehaviour {
             deck.Add(cd.Cards[18]);
             deck.Add(cd.Cards[19]);
             deck.Add(cd.Cards[20]);
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            deck.Add(cd.Cards[10]);
+            deck.Add(cd.Cards[11]);
+            deck.Add(cd.Cards[12]);
+            deck.Add(cd.Cards[13]);
+            deck.Add(cd.Cards[15]);
+            deck.Add(cd.Cards[16]);
+            deck.Add(cd.Cards[19]);
         }
         Shuffle(deck);
 
@@ -125,15 +138,17 @@ public class GameManager : MonoBehaviour {
                 eventDescUI.text = ed.Events[combinedID].Desc;
                 if(ed.Events[combinedID].Affinity == "Nature")
                 {
-                    Debug.Log("Nature");
+                    nature++;
                 }
                 else if(ed.Events[combinedID].Affinity == "Tech")
                 {
-                    Debug.Log("Tech");
+                    tech++;
                 }
                 else
                 {
-                    Debug.Log("Death");
+                    //Some Method to show death screen
+                    //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    SetEnding("Death");
                 }
                 Destroy(hand[removed[0]]);
                 hand.RemoveAt(removed[0]);
@@ -198,5 +213,35 @@ public class GameManager : MonoBehaviour {
             ts[i] = ts[r];
             ts[r] = tmp;
         }
+    }
+
+    public void SetEnding(string ending)
+    {
+        StartCoroutine(Wait(ending));
+        //while(new WaitForSeconds(5f));
+        
+        
+
+    }
+
+    IEnumerator Wait(string ending)
+    {
+        print("Start");
+        yield return new WaitForSeconds(6f);
+        while (GameObject.Find("Video Player"));
+        image.SetActive(true);
+        if (ending == "Nature")
+        {
+            image.GetComponent<RawImage>().texture = Resources.Load<Texture>("natureEarth");
+        }
+        else if (ending == "Tech")
+        {
+            image.GetComponent<RawImage>().texture = Resources.Load<Texture>("techEarth");
+        }
+        else if (ending == "Death")
+        {
+            image.GetComponent<RawImage>().texture = Resources.Load<Texture>("deathEarth");
+        }
+        print("End");
     }
 }
