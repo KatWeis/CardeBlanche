@@ -116,7 +116,7 @@ public class EventManager : MonoBehaviour {
         sun.GetComponentInChildren<FlareEffect>().Flare(150f, 15f, 5f, 0f, 0f);
         GameObject.Find("Earth").GetComponent<SphereCollider>().enabled = false;
         GameObject.Find("CamParent").GetComponent<ScreenShake>().ShakeCamera(5f, 10f);
-        IEnumerator fade = FadeCanvas(2f);
+        IEnumerator fade = FadeCanvas(4f);
         StartCoroutine(fade);
         
         IEnumerator show = ShowVideo(6f, 7f);
@@ -162,6 +162,7 @@ public class EventManager : MonoBehaviour {
             timer += Time.deltaTime;
             yield return null;
         }
+        AllCanvas.alpha = 0f;
     }
 
     IEnumerator ShowVideo(float waitTime, float fadeTime)
