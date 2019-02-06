@@ -90,6 +90,10 @@ public class EventManager : MonoBehaviour {
         IEnumerator makeForest = SpawnForests(objs);
         StartCoroutine(makeForest);
     }
+    /*public void Apocalypse()
+    {
+        GameObject.Find("Earth").GetComponent<Renderer>().material.color = new Color(51.0f, 17.0f, 0.0f, 0.0f);
+    }*/
 
     public void SolarFlare()
     {
@@ -109,6 +113,7 @@ public class EventManager : MonoBehaviour {
     {
         // disable the camera script and enable the cutscene camera
         GameObject cam = GameObject.Find("Main Camera");
+        cam.GetComponent<AudioSource>().Stop();
         cam.GetComponent<OrbitCamera>().enabled = false;
         cam.GetComponent<ANIM_Cam_Supernova>().enabled = true;
         GameObject sun = GameObject.Find("Sun");
