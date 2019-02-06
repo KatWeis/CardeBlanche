@@ -11,8 +11,8 @@ public class HideHand : MonoBehaviour{
     private float startY;
     private float endY;
 
-    private float upY = 135; // Y coordinate when hand is visible
-    private float downY = -210; // Y coordinate when hand is hidden
+    public float upY = 135.5f; // Y coordinate when hand is visible
+    public float downY = -210; // Y coordinate when hand is hidden
 
     public bool IsHandVis { get { return isHandVis; } }
 

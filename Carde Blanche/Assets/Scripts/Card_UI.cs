@@ -32,7 +32,7 @@ public class Card_UI : MonoBehaviour {
         upCardPos = new Vector3(transform.position.x, activeY, transform.position.z);
         downCardPos = new Vector3(transform.position.x, inactiveY, transform.position.z);
 
-        hhScript = transform.parent.parent.GetChild(4).GetComponent<HideHand>();
+        hhScript = transform.parent.parent.GetChild(1).GetComponent<HideHand>();
     }
 	
 	// Update is called once per frame

@@ -54,7 +54,7 @@ public class EventManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            StarMario();
+            UnstoppableMario();
         }
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -128,7 +128,7 @@ public class EventManager : MonoBehaviour {
     {
         Instantiate(lazers, Vector3.zero, Quaternion.identity);
     }
-    public void StarMario()
+    public void UnstoppableMario()
     {
         Instantiate(mario, new Vector3(-7f, 0f, 0f), Quaternion.identity);
     }

@@ -8,12 +8,16 @@ public class InitVideo : MonoBehaviour {
     public VideoPlayer player;
     public RawImage image;
 
+    
     RenderTexture text;
 
     void Start()
     {
-        text = new RenderTexture((int)player.clip.width, (int)player.clip.height, 0);
-
+        text = new RenderTexture((int)Screen.width, (int)Screen.height, 0);
+        //image.SetNativeSize();
+        image.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
+        Debug.Log(Screen.width);
+        Debug.Log(Screen.height);
         player.targetTexture = text;
         image.texture = text;
     }
