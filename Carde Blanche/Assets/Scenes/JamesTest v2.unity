@@ -1898,13 +1898,13 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec4a1ea4da6b809449268182ab6f5fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 861748205}
-  timeToLook: 10
+  timeToLook: 1.5
 --- !u!1001 &552223088
 Prefab:
   m_ObjectHideFlags: 0
@@ -6426,6 +6426,7 @@ MonoBehaviour:
   AllCanvas: {fileID: 0}
   video: {fileID: 0}
   lazers: {fileID: 0}
+  handScript: {fileID: 0}
   mario: {fileID: 0}
   explosion: {fileID: 0}
 --- !u!114 &1821164907
@@ -6604,6 +6605,7 @@ MonoBehaviour:
   AllCanvas: {fileID: 952014628}
   video: {fileID: 369617504}
   lazers: {fileID: 1033853713352118, guid: 75b528fea8f4f5d48a13765879e49b62, type: 2}
+  handScript: {fileID: 225392126}
   mario: {fileID: 1396769221016772, guid: 83668d23bfc2e4e45961ea4e4ea750bd, type: 2}
   explosion: {fileID: 1112970226493486, guid: d8746cc83c556db4eb521e83eef16bf7, type: 2}
 --- !u!1 &1888985304

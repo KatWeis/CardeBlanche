@@ -16,6 +16,7 @@ public class HideHand : MonoBehaviour{
 
     public bool IsHandVis { get { return isHandVis; } }
 
+    private bool waiting = false;
     // Use this for initialization
     void Start () {
         isHandVis = true;
@@ -34,7 +35,7 @@ public class HideHand : MonoBehaviour{
     /// </summary>
     public void MoveHand()
     {
-        if(!Input.GetMouseButtonDown(1) || (hand.transform.position.y != upY && hand.transform.position.y != downY))
+        if(!Input.GetMouseButtonDown(1) || (hand.transform.position.y != upY && hand.transform.position.y != downY) || waiting)
         {
             return;
         }
@@ -42,14 +43,21 @@ public class HideHand : MonoBehaviour{
 
         //DeselectAllCards();
 
-        IEnumerator sh = SlideHand(isHandVis);
+        IEnumerator sh = SlideHand(isHandVis, -1f);
+        StartCoroutine(sh);
+    }
+
+    public void ToggleHand(bool up, float time)
+    {
+        isHandVis = (time < 0 ? up : isHandVis);
+        IEnumerator sh = SlideHand(up, time);
         StartCoroutine(sh);
     }
 
     /// <summary>
     /// Bumps the Card up above the others to emphasize selection
     /// </summary>
-    IEnumerator SlideHand(bool slideUp)
+    IEnumerator SlideHand(bool slideUp, float waitToDoOpposite)
     {
         //DeselectAllCards();
         //StopCoroutine("BumpCard");
@@ -80,6 +88,40 @@ public class HideHand : MonoBehaviour{
             float yPos = Mathf.Lerp(startY, endY, currentTime / maxTime);
             hand.transform.position = new Vector3(hand.transform.position.x, yPos, hand.transform.position.z);
         }
+
+        if (waitToDoOpposite >= 0)
+        {
+            waiting = true;
+            yield return new WaitForSeconds(waitToDoOpposite);
+        }
+        else yield break;
+
+        if (!slideUp)
+        {
+            startY = downY;
+            endY = upY;
+        }
+        else
+        {
+            startY = upY;
+            endY = downY;
+        }
+
+
+        currentTime = 0f;
+        // get the total angle we are traversing * degreesPerSecond
+        // to get totalTime we need to Lerp
+        maxTime = .5f;
+
+        while (currentTime < maxTime)
+        {
+            yield return null;
+            currentTime += Time.deltaTime;
+            float yPos = Mathf.Lerp(startY, endY, currentTime / maxTime);
+            hand.transform.position = new Vector3(hand.transform.position.x, yPos, hand.transform.position.z);
+        }
+
+        waiting = false;
     }
 
     /// <summary>
