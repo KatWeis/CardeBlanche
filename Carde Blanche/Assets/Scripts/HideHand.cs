@@ -14,6 +14,8 @@ public class HideHand : MonoBehaviour{
     private float upY = 135; // Y coordinate when hand is visible
     private float downY = -210; // Y coordinate when hand is hidden
 
+    public bool IsHandVis { get { return isHandVis; } }
+
     // Use this for initialization
     void Start () {
         isHandVis = true;
@@ -32,11 +34,13 @@ public class HideHand : MonoBehaviour{
     /// </summary>
     public void MoveHand()
     {
-        if(!Input.GetMouseButtonDown(1))
+        if(!Input.GetMouseButtonDown(1) || (hand.transform.position.y != upY && hand.transform.position.y != downY))
         {
             return;
         }
         isHandVis = !isHandVis;
+
+        //DeselectAllCards();
 
         IEnumerator sh = SlideHand(isHandVis);
         StartCoroutine(sh);
@@ -48,9 +52,9 @@ public class HideHand : MonoBehaviour{
     IEnumerator SlideHand(bool slideUp)
     {
         //DeselectAllCards();
-
         //StopCoroutine("BumpCard");
         //StopCoroutine("UnBumpCard");
+
 
         if (slideUp)
         {
@@ -88,6 +92,8 @@ public class HideHand : MonoBehaviour{
         {
             hand.transform.GetChild(i).GetComponent<Card_UI>().selected = false;
             hand.transform.GetChild(i).GetComponent<Card_UI>().SendMessage("ClearHighlight");
+            hand.transform.GetChild(i).position = new Vector3(hand.transform.GetChild(i).position.x, 
+                hand.transform.GetChild(i).GetComponent<Card_UI>().inactiveY, hand.transform.GetChild(i).position.z);
         }
     }
 }

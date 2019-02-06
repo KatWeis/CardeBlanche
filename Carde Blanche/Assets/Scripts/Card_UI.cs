@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Card_UI : MonoBehaviour {
 
+    private HideHand hhScript;
+
     private Outline ol;
     public bool selected;
     private bool hovered;
@@ -29,6 +31,8 @@ public class Card_UI : MonoBehaviour {
 
         upCardPos = new Vector3(transform.position.x, activeY, transform.position.z);
         downCardPos = new Vector3(transform.position.x, inactiveY, transform.position.z);
+
+        hhScript = transform.parent.parent.GetChild(4).GetComponent<HideHand>();
     }
 	
 	// Update is called once per frame
@@ -42,6 +46,8 @@ public class Card_UI : MonoBehaviour {
     /// </summary>
     public void SelectHighlight()
     {
+        if (!hhScript.IsHandVis) return;
+
         selected = !selected;
         if(selected)
         {
@@ -75,7 +81,7 @@ public class Card_UI : MonoBehaviour {
     /// </summary>
     public void StartHover()
     {
-        if (selected) return;
+        if (selected || !hhScript.IsHandVis) return;
         hovered = true;
         startTime = Time.time;
         HoverHighlight();
@@ -89,7 +95,7 @@ public class Card_UI : MonoBehaviour {
     /// </summary>
     public void StopHover()
     {
-        if (selected) return;
+        if (selected || !hhScript.IsHandVis) return;
         hovered = false;
         startTime = Time.time;
         HoverHighlight();
@@ -122,7 +128,6 @@ public class Card_UI : MonoBehaviour {
     /// </summary>
     IEnumerator BumpCard()
     {
-
         float currentTime = 0f;
         // get the total angle we are traversing * degreesPerSecond
         // to get totalTime we need to Lerp
