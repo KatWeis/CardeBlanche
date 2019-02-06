@@ -22,7 +22,12 @@ public class GameManager : MonoBehaviour {
 
     List<Card> cardsInHand = new List<Card>();
     List<Card> deck = new List<Card>();
-    
+
+    private bool isDeath = false;
+    private int nature = 0;
+    private int tech = 0;
+
+
     //Potential Solution
     //Card[] selected = new Card[2];
 
@@ -69,7 +74,7 @@ public class GameManager : MonoBehaviour {
         // Debug.Log(ed.Events[combinedID].Name);
         // Debug.Log(ed.Events[combinedID].Desc);
 
-        panel = canvas.transform.GetChild(2).gameObject;
+        panel = canvas.transform.GetChild(1).GetChild(0).gameObject;
 
         CreateHand();
     }
@@ -118,7 +123,18 @@ public class GameManager : MonoBehaviour {
             {
                 eventTitleUI.text = ed.Events[combinedID].Name.ToUpper();
                 eventDescUI.text = ed.Events[combinedID].Desc;
-
+                if(ed.Events[combinedID].Affinity == "Nature")
+                {
+                    Debug.Log("Nature");
+                }
+                else if(ed.Events[combinedID].Affinity == "Tech")
+                {
+                    Debug.Log("Tech");
+                }
+                else
+                {
+                    Debug.Log("Death");
+                }
                 Destroy(hand[removed[0]]);
                 hand.RemoveAt(removed[0]);
                 Destroy(hand[removed[1] - 1]);
@@ -126,14 +142,11 @@ public class GameManager : MonoBehaviour {
                 handSize -= 2;
                 string name = ed.Events[combinedID].Name;
                 
-                try
-                {
-                    this.gameObject.GetComponent<EventManager>().SendMessage(name.Replace(" ", ""),null, SendMessageOptions.DontRequireReceiver);
-                }
-                catch (Exception e)
-                {
-                    
-                }
+             
+               
+                this.gameObject.GetComponent<EventManager>().SendMessage(name.Replace(" ", ""),null, SendMessageOptions.DontRequireReceiver);
+               
+               
                 
                 DrawCard();
                 DrawCard();
