@@ -7,6 +7,7 @@ public class HideHand : MonoBehaviour{
 
     private GameObject hand;
     private bool isHandVis;
+    private bool isHandMoving = false;
 
     private float startY;
     private float endY;
@@ -34,13 +35,13 @@ public class HideHand : MonoBehaviour{
     /// </summary>
     public void MoveHand()
     {
-        if(!Input.GetMouseButtonDown(1) || (hand.transform.position.y != upY && hand.transform.position.y != downY))
+        if(!Input.GetMouseButtonDown(1) || isHandMoving)
         {
             return;
         }
         isHandVis = !isHandVis;
 
-        //DeselectAllCards();
+        if(!isHandVis) DeselectAllCards();
 
         IEnumerator sh = SlideHand(isHandVis);
         StartCoroutine(sh);
@@ -54,7 +55,7 @@ public class HideHand : MonoBehaviour{
         //DeselectAllCards();
         //StopCoroutine("BumpCard");
         //StopCoroutine("UnBumpCard");
-
+        isHandMoving = true;
 
         if (slideUp)
         {
@@ -75,11 +76,14 @@ public class HideHand : MonoBehaviour{
 
         while (currentTime < maxTime)
         {
-            yield return null;
+            
             currentTime += Time.deltaTime;
             float yPos = Mathf.Lerp(startY, endY, currentTime / maxTime);
             hand.transform.position = new Vector3(hand.transform.position.x, yPos, hand.transform.position.z);
+            yield return null;
         }
+        isHandMoving = false;
+        Debug.Log(isHandMoving);
     }
 
     /// <summary>
@@ -88,10 +92,11 @@ public class HideHand : MonoBehaviour{
     /// </summary>
     private void DeselectAllCards()
     {
+        Debug.Log(hand.transform.childCount);
         for (int i = 0; i < hand.transform.childCount; i++)
         {
             hand.transform.GetChild(i).GetComponent<Card_UI>().selected = false;
-            hand.transform.GetChild(i).GetComponent<Card_UI>().SendMessage("ClearHighlight");
+            //hand.transform.GetChild(i).GetComponent<Card_UI>().SendMessage("ClearHighlight");
             hand.transform.GetChild(i).position = new Vector3(hand.transform.GetChild(i).position.x, 
                 hand.transform.GetChild(i).GetComponent<Card_UI>().inactiveY, hand.transform.GetChild(i).position.z);
         }
