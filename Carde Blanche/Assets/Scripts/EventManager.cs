@@ -13,6 +13,7 @@ public class EventManager : MonoBehaviour {
     public CanvasGroup AllCanvas;
     public VideoPlayer video;
     public GameObject lazers;
+    public HideHand handScript;
 
     public GameObject mario;
 
@@ -49,7 +50,7 @@ public class EventManager : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Lazers();
+            LASERS();
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -70,6 +71,7 @@ public class EventManager : MonoBehaviour {
     public void DeathStar()
     {
         Instantiate(deathStar, new Vector3(12f, 0, 0), Quaternion.identity);
+        handScript.ToggleHand(false, 3f);
     }
 
     public void DeathRay()
@@ -81,6 +83,7 @@ public class EventManager : MonoBehaviour {
             death.transform.GetChild(0).GetComponent<FlareEffect>().Flare(0.75f, 2f, 1f, 0.75f, 1f, 0f);
             death.GetComponent<IdleOrbit>().enabled = false;
             death.transform.GetChild(1).gameObject.SetActive(true);
+            handScript.ToggleHand(false, -1f);
         }
     }
 
@@ -89,6 +92,7 @@ public class EventManager : MonoBehaviour {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Tree");
         IEnumerator makeForest = SpawnForests(objs);
         StartCoroutine(makeForest);
+        handScript.ToggleHand(false, 2f);
     }
     /*public void Apocalypse()
     {
@@ -102,11 +106,13 @@ public class EventManager : MonoBehaviour {
         p.Play();
         IEnumerator co = PlaySolarFlare(p);
         StartCoroutine(co);
+        handScript.ToggleHand(false, 5f);
     }
 
     public void Earthquake()
     {
         GameObject.Find("CamParent").GetComponent<ScreenShake>().ShakeCamera(30f, 5f);
+        handScript.ToggleHand(false, 4f);
     }
 
     public void Supernova()
@@ -127,15 +133,18 @@ public class EventManager : MonoBehaviour {
         IEnumerator show = ShowVideo(6f, 7f);
 
         StartCoroutine(show);
+        handScript.ToggleHand(false, -1f);
     }
 
-    public void Lazers()
+    public void LASERS()
     {
         Instantiate(lazers, Vector3.zero, Quaternion.identity);
+        handScript.ToggleHand(false, 4f);
     }
     public void UnstoppableMario()
     {
         Instantiate(mario, new Vector3(-7f, 0f, 0f), Quaternion.identity);
+        handScript.ToggleHand(false, 3f);
     }
 
     public void WorldWar3()
@@ -143,6 +152,7 @@ public class EventManager : MonoBehaviour {
         GameObject[] spawns = GameObject.FindGameObjectsWithTag("SpawnPoint");
         IEnumerator co = Explosions(spawns);
         StartCoroutine(co);
+        handScript.ToggleHand(false, 3f);
     }
 
     IEnumerator Explosions(GameObject[] spawn)
