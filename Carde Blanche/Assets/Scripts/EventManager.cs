@@ -113,12 +113,14 @@ public class EventManager : MonoBehaviour {
         cam.GetComponent<ANIM_Cam_Supernova>().enabled = true;
         GameObject sun = GameObject.Find("Sun");
         sun.GetComponent<IdleOrbit>().enabled = false;
-        sun.GetComponentInChildren<FlareEffect>().Flare(150f, 6f, 5f, 0f, 0f);
+        sun.GetComponentInChildren<FlareEffect>().Flare(150f, 15f, 5f, 0f, 0f);
         GameObject.Find("Earth").GetComponent<SphereCollider>().enabled = false;
         GameObject.Find("CamParent").GetComponent<ScreenShake>().ShakeCamera(5f, 10f);
-        //IEnumerator fade = FadeCanvas(2f);
-        //StartCoroutine(fade);
+        IEnumerator fade = FadeCanvas(4f);
+        StartCoroutine(fade);
+        
         IEnumerator show = ShowVideo(6f, 7f);
+
         StartCoroutine(show);
     }
 
@@ -128,7 +130,7 @@ public class EventManager : MonoBehaviour {
     }
     public void StarMario()
     {
-        Instantiate(mario, Vector3.zero, Quaternion.identity);
+        Instantiate(mario, new Vector3(-7f, 0f, 0f), Quaternion.identity);
     }
 
     public void WorldWar3()
@@ -160,6 +162,7 @@ public class EventManager : MonoBehaviour {
             timer += Time.deltaTime;
             yield return null;
         }
+        AllCanvas.alpha = 0f;
     }
 
     IEnumerator ShowVideo(float waitTime, float fadeTime)

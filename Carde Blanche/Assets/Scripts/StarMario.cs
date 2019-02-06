@@ -16,6 +16,7 @@ public class StarMario : MonoBehaviour {
         while (true)
         {
             gameObject.GetComponent<Renderer>().material.SetColor("_Color", CreateColor());
+            yield return new WaitForSeconds(0.07f);
         }
     }
 

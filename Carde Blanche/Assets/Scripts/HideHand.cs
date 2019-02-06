@@ -20,7 +20,7 @@ public class HideHand : MonoBehaviour{
     void Start () {
         isHandVis = true;
 
-        hand = transform.parent.GetChild(2).gameObject;
+        hand = transform.parent.GetChild(0).gameObject;
     }
 	
 	// Update is called once per frame
