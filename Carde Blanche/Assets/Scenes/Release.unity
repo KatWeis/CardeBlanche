@@ -1341,6 +1341,11 @@ Prefab:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224735516887056846, guid: 2b7aba4343e5c734e8dd4c26a23bc9f1,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b7aba4343e5c734e8dd4c26a23bc9f1, type: 2}
   m_IsPrefabAsset: 0
@@ -6002,6 +6007,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114572258552509464, guid: 576217e76542cc349b8e64af46cc1381,
+        type: 2}
+      propertyPath: hideHand
+      value: 
+      objectReference: {fileID: 713480002}
     m_RemovedComponents:
     - {fileID: 114057802829359968, guid: 576217e76542cc349b8e64af46cc1381, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 576217e76542cc349b8e64af46cc1381, type: 2}

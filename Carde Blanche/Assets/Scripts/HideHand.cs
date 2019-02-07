@@ -55,6 +55,10 @@ public class HideHand : MonoBehaviour{
         StartCoroutine(sh);
     }
 
+    public void RemoveHand(bool up, float time)
+    {
+
+    }
     /// <summary>
     /// Bumps the Card up above the others to emphasize selection
     /// </summary>

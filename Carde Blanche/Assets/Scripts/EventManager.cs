@@ -144,7 +144,7 @@ public class EventManager : MonoBehaviour {
         main.startColor = Color.red;
         pSys.Stop();
         pSys.Play();
-        handScript.ToggleHand(false, 1f);
+        handScript.ToggleHand(false, -1f);
     }
     public void CuredEarth()
     {

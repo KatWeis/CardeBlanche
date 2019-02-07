@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
     private GameObject panel;
 
     public int handSize = 2;
+    public HideHand hideHand;
     List<GameObject> hand = new List<GameObject>();
 
     List<Card> cardsInHand = new List<Card>();
@@ -30,7 +31,9 @@ public class GameManager : MonoBehaviour {
     private int tech = 0;
     private GameObject image;
     private int maxCombo = 5;
-    private int currenyCombo = 0;
+    private int currentCombo = 0;
+
+    private GameObject button;
     //Potential Solution
     //Card[] selected = new Card[2];
 
@@ -39,7 +42,10 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         image = GameObject.Find("EndingImage");
+        button = GameObject.Find("Button");
+        button.GetComponent<Button>().onClick.AddListener(delegate { SceneManager.LoadScene(SceneManager.GetActiveScene().name); });
         image.SetActive(false);
+        button.SetActive(false);
         selected[0] = -1;
         //Arbitrary deck with all current cards
         //deck.Add(cd.Cards[10]);
@@ -149,7 +155,25 @@ public class GameManager : MonoBehaviour {
                 {
                     //Some Method to show death screen
                     //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    hideHand.ToggleHand(false, 40f);
                     SetEnding("Death");
+                }
+
+                if(currentCombo == maxCombo)
+                {
+                    hideHand.ToggleHand(false, -1f);
+                    if (nature > tech)
+                    {
+                        SetEnding("Nature");
+                    }
+                    else
+                    {
+                        SetEnding("Tech");
+                    }
+                }
+                else
+                {
+                    currentCombo++;
                 }
                 Destroy(hand[removed[0]]);
                 hand.RemoveAt(removed[0]);
@@ -228,28 +252,24 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator Wait(string ending)
     {
+        
         print("Start");
-        yield return new WaitForSeconds(8f);
+        if(ending == "Death")
+        {
+            yield return new WaitForSeconds(8f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(4f);
+        }
+        
         if(GameObject.Find("Video Player").GetComponent<VideoPlayer>().isPlaying)
         {
             StartCoroutine(WaitForVideo(ending));
         }
         else
         {
-            image.SetActive(true);
-            if (ending == "Nature")
-            {
-                image.GetComponent<RawImage>().texture = Resources.Load<Texture>("natureEarth");
-            }
-            else if (ending == "Tech")
-            {
-                image.GetComponent<RawImage>().texture = Resources.Load<Texture>("techEarth");
-            }
-            else if (ending == "Death")
-            {
-                image.GetComponent<RawImage>().texture = Resources.Load<Texture>("deathEarth");
-            }
-            print("End1");
+            End(ending);
         }
         
     }
@@ -257,6 +277,11 @@ public class GameManager : MonoBehaviour {
     IEnumerator WaitForVideo(string ending)
     {
         yield return new WaitForSeconds(15f);
+        End(ending);
+    }
+
+    void End(string ending)
+    {
         image.SetActive(true);
         if (ending == "Nature")
         {
@@ -270,6 +295,6 @@ public class GameManager : MonoBehaviour {
         {
             image.GetComponent<RawImage>().texture = Resources.Load<Texture>("deathEarth");
         }
-        print("End2");
+        button.SetActive(true);
     }
 }
