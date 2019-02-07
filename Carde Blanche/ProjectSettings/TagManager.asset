@@ -7,6 +7,8 @@ TagManager:
   - SpawnPoint
   - Tree
   - DeathStar
+  - EmitsAudio
+  - Forest
   layers:
   - Default
   - TransparentFX

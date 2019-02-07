@@ -14,10 +14,16 @@ public class EventManager : MonoBehaviour {
     public VideoPlayer video;
     public GameObject lazers;
     public HideHand handScript;
+    public GameObject metalForest;
+    public GameObject metalTree;
+    public Material deadEarth;
+    public Material curedEarth;
 
     public GameObject mario;
 
     public GameObject explosion;
+
+    public ParticleSystem pSys;
 
 
 
@@ -31,6 +37,14 @@ public class EventManager : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.F))
         {
             Reforestation();
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            ArtificialPlants();
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Overgrowth();
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -52,12 +66,10 @@ public class EventManager : MonoBehaviour {
         {
             LASERS();
         }
-
         if (Input.GetKeyDown(KeyCode.M))
         {
             UnstoppableMario();
         }
-
         if (Input.GetKeyDown(KeyCode.X))
         {
             WorldWar3();
@@ -65,6 +77,14 @@ public class EventManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R))
         {
             DeathRay();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Apocalypse();
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            CuredEarth();
         }
     }
 
@@ -94,10 +114,40 @@ public class EventManager : MonoBehaviour {
         StartCoroutine(makeForest);
         handScript.ToggleHand(false, 2f);
     }
-    /*public void Apocalypse()
+    public void Overgrowth()
     {
-        GameObject.Find("Earth").GetComponent<Renderer>().material.color = new Color(51.0f, 17.0f, 0.0f, 0.0f);
-    }*/
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+        IEnumerator makeForest = SpawnForests(objs);
+        StartCoroutine(makeForest);
+        handScript.ToggleHand(false, 2f);
+    }
+    public void ArtificialPlants()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Tree");
+        IEnumerator makeForest = SpawnMetalTrees(objs, false);
+        StartCoroutine(makeForest);
+        objs = GameObject.FindGameObjectsWithTag("Forest");
+        IEnumerator makeForests = SpawnMetalTrees(objs, true);
+        StartCoroutine(makeForests);
+        handScript.ToggleHand(false, 2f);
+    }
+    public void Apocalypse()
+    {
+        //GameObject.Find("Earth").GetComponent<Renderer>().material.color = new Color(51.0f, 17.0f, 0.0f, 1.0f);
+        GameObject.Find("Earth").GetComponent<Renderer>().material = deadEarth;
+        ParticleSystem.MainModule main = pSys.main;
+        main.startColor = Color.red;
+        pSys.Stop();
+        pSys.Play();
+    }
+    public void CuredEarth()
+    {
+        GameObject.Find("Earth").GetComponent<Renderer>().material = curedEarth;
+        ParticleSystem.MainModule main = pSys.main;
+        main.startColor = new Color(0f, 179f, 255f, 1f);
+        pSys.Stop();
+        pSys.Play();
+    }
 
     public void SolarFlare()
     {
@@ -237,6 +287,47 @@ public class EventManager : MonoBehaviour {
         scale = 0f;
 
         while(scale < 1.5)
+        {
+            Vector3 currentScale = new Vector3(scale, scale, scale);
+            foreach (GameObject tree in forest)
+            {
+                tree.transform.localScale = currentScale;
+            }
+
+            scale += 0.05f;
+
+            yield return null;
+        }
+    }
+
+    IEnumerator SpawnMetalTrees(GameObject[] trees, bool forests)
+    {
+        float scale = 1f;
+
+        while (scale > 0)
+        {
+            Vector3 currentScale = new Vector3(scale, scale, scale);
+            foreach (GameObject tree in trees)
+            {
+                tree.transform.localScale = currentScale;
+            }
+
+            scale -= 0.025f;
+
+            yield return null;
+        }
+
+        List<GameObject> forest = new List<GameObject>();
+
+        foreach (GameObject tree in trees)
+        {
+            forest.Add((GameObject)Instantiate((forests ? metalForest : metalTree), tree.transform.position, tree.transform.rotation));
+            Destroy(tree);
+        }
+
+        scale = 0f;
+
+        while (scale < 1.5)
         {
             Vector3 currentScale = new Vector3(scale, scale, scale);
             foreach (GameObject tree in forest)

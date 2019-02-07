@@ -156,10 +156,11 @@ public class GameManager : MonoBehaviour {
                 hand.RemoveAt(removed[1] - 1);
                 handSize -= 2;
                 string name = ed.Events[combinedID].Name;
-                
-             
-               
-                this.gameObject.GetComponent<EventManager>().SendMessage(name.Replace(" ", ""),null, SendMessageOptions.DontRequireReceiver);
+
+
+                string modifiedName = name.Replace(" ", "");
+                modifiedName = modifiedName.Replace("-", "");
+                this.gameObject.GetComponent<EventManager>().SendMessage(modifiedName,null, SendMessageOptions.DontRequireReceiver);
                
                
                 

@@ -45,6 +45,11 @@ public class EmitDeathRay : MonoBehaviour {
             {
                 Destroy(props[i]);
             }
+            props = GameObject.FindGameObjectsWithTag("Forest");
+            for (int i = 0; i < props.Length; i++)
+            {
+                Destroy(props[i]);
+            }
             Destroy(this);
         }
         if(timer > 7f && !flare)
