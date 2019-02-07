@@ -11,8 +11,8 @@ public class Card_UI : MonoBehaviour {
     public bool selected;
     private bool hovered;
 
-    public float inactiveY = 135.0f;
-    public float activeY = 210.0f;
+    public float inactiveY = 0f;
+    public float activeY = 150.0f;
     private float riseSpeed = 50.0f;
 
     private float percent;
@@ -29,8 +29,8 @@ public class Card_UI : MonoBehaviour {
         selected = false;
         hovered = false;
 
-        upCardPos = new Vector3(transform.position.x, activeY, transform.position.z);
-        downCardPos = new Vector3(transform.position.x, inactiveY, transform.position.z);
+        upCardPos = new Vector3(transform.localPosition.x, activeY, transform.localPosition.z);
+        downCardPos = new Vector3(transform.localPosition.x, inactiveY, transform.localPosition.z);
 
         hhScript = transform.parent.parent.GetChild(1).GetComponent<HideHand>();
     }
@@ -57,8 +57,8 @@ public class Card_UI : MonoBehaviour {
         }
         else
         {
-            ol.effectColor = Color.black;
-            ol.effectDistance = new Vector2(1, -1);
+            ol.effectColor = Color.green;
+            ol.effectDistance = new Vector2(6, 6);
             GameObject.Find("GameManager").SendMessage("ClearSelectedCard");
         }
         
@@ -95,9 +95,8 @@ public class Card_UI : MonoBehaviour {
     /// </summary>
     public void StopHover()
     {
-        if (selected || hhScript.IsHandVis == false) return;
+        if (selected || !hhScript.IsHandVis) return;
         hovered = false;
-        Debug.Log(hhScript.IsHandVis);
         startTime = Time.time;
         HoverHighlight();
         StopCoroutine("BumpCard");
@@ -134,13 +133,15 @@ public class Card_UI : MonoBehaviour {
         // to get totalTime we need to Lerp
         float maxTime = .3f;
 
-        while (currentTime < maxTime)
+        while (currentTime < maxTime && hhScript.IsHandVis)
         {
             yield return null;
             currentTime += Time.deltaTime;
             float yPos = Mathf.Lerp(inactiveY, activeY, currentTime / maxTime);
-            transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
+            transform.localPosition = new Vector3(transform.localPosition.x, yPos, transform.localPosition.z);
         }
+        //transform.position = new Vector3(transform.position.x, activeY, transform.position.z);
+        if(!hhScript.IsHandVis) transform.localPosition = new Vector3(transform.localPosition.x, inactiveY, transform.localPosition.z);
     }
 
     /// <summary>
@@ -154,12 +155,13 @@ public class Card_UI : MonoBehaviour {
         // to get totalTime we need to Lerp
         float maxTime = .3f;
 
-        while (currentTime < maxTime)
+        while (currentTime < maxTime && hhScript.IsHandVis)
         {
             yield return null;
             currentTime += Time.deltaTime;
             float yPos = Mathf.Lerp(activeY, inactiveY, currentTime / maxTime);
-            transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
+            transform.localPosition = new Vector3(transform.localPosition.x, yPos, transform.localPosition.z);
         }
+        transform.localPosition = new Vector3(transform.localPosition.x, inactiveY, transform.localPosition.z);
     }
 }

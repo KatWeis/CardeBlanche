@@ -26,7 +26,7 @@ public class HideHand : MonoBehaviour{
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         MoveHand();
 	}
 
@@ -60,9 +60,6 @@ public class HideHand : MonoBehaviour{
     /// </summary>
     IEnumerator SlideHand(bool slideUp, float waitToDoOpposite)
     {
-        //DeselectAllCards();
-        //StopCoroutine("BumpCard");
-        //StopCoroutine("UnBumpCard");
         isHandMoving = true;
 
         if (slideUp)
@@ -91,7 +88,6 @@ public class HideHand : MonoBehaviour{
             yield return null;
         }
         isHandMoving = false;
-        Debug.Log(isHandMoving);
 
         if (waitToDoOpposite >= 0)
         {
@@ -134,13 +130,10 @@ public class HideHand : MonoBehaviour{
     /// </summary>
     private void DeselectAllCards()
     {
-        Debug.Log(hand.transform.childCount);
         for (int i = 0; i < hand.transform.childCount; i++)
         {
             hand.transform.GetChild(i).GetComponent<Card_UI>().selected = false;
             hand.transform.GetChild(i).GetComponent<Card_UI>().SendMessage("ClearHighlight");
-            hand.transform.GetChild(i).position = new Vector3(hand.transform.GetChild(i).position.x, 
-                hand.transform.GetChild(i).GetComponent<Card_UI>().inactiveY, hand.transform.GetChild(i).position.z);
         }
     }
 }
