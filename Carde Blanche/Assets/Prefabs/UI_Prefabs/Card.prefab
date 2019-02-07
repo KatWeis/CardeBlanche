@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selected: 0
   inactiveY: 0
-  activeY: 150
+  activeY: 80
   cardID: 0
 --- !u!114 &114399241372847798
 MonoBehaviour:

@@ -139,6 +139,7 @@ public class EventManager : MonoBehaviour {
         main.startColor = Color.red;
         pSys.Stop();
         pSys.Play();
+        handScript.ToggleHand(false, 1f);
     }
     public void CuredEarth()
     {
@@ -147,6 +148,7 @@ public class EventManager : MonoBehaviour {
         main.startColor = new Color(0f, 179f, 255f, 1f);
         pSys.Stop();
         pSys.Play();
+        handScript.ToggleHand(false, 1f);
     }
 
     public void SolarFlare()
