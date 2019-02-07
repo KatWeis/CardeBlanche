@@ -119,7 +119,11 @@ public class EventManager : MonoBehaviour {
     {
         // disable the camera script and enable the cutscene camera
         GameObject cam = GameObject.Find("Main Camera");
-        cam.GetComponent<AudioSource>().Stop();
+        GameObject[] audio = GameObject.FindGameObjectsWithTag("EmitsAudio");
+        foreach(GameObject g in audio)
+        {
+            g.GetComponent<AudioSource>().Stop();
+        }
         cam.GetComponent<OrbitCamera>().enabled = false;
         cam.GetComponent<ANIM_Cam_Supernova>().enabled = true;
         GameObject sun = GameObject.Find("Sun");
