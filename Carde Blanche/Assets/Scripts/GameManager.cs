@@ -6,6 +6,7 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour {
     EventDictionary ed = new EventDictionary();
@@ -220,7 +221,7 @@ public class GameManager : MonoBehaviour {
     {
         StartCoroutine(Wait(ending));
         //while(new WaitForSeconds(5f));
-        
+        //Debug.Log(ending);
         
 
     }
@@ -228,8 +229,34 @@ public class GameManager : MonoBehaviour {
     IEnumerator Wait(string ending)
     {
         print("Start");
-        yield return new WaitForSeconds(6f);
-        while (GameObject.Find("Video Player"));
+        yield return new WaitForSeconds(8f);
+        if(GameObject.Find("Video Player").GetComponent<VideoPlayer>().isPlaying)
+        {
+            StartCoroutine(WaitForVideo(ending));
+        }
+        else
+        {
+            image.SetActive(true);
+            if (ending == "Nature")
+            {
+                image.GetComponent<RawImage>().texture = Resources.Load<Texture>("natureEarth");
+            }
+            else if (ending == "Tech")
+            {
+                image.GetComponent<RawImage>().texture = Resources.Load<Texture>("techEarth");
+            }
+            else if (ending == "Death")
+            {
+                image.GetComponent<RawImage>().texture = Resources.Load<Texture>("deathEarth");
+            }
+            print("End1");
+        }
+        
+    }
+
+    IEnumerator WaitForVideo(string ending)
+    {
+        yield return new WaitForSeconds(15f);
         image.SetActive(true);
         if (ending == "Nature")
         {
@@ -243,6 +270,6 @@ public class GameManager : MonoBehaviour {
         {
             image.GetComponent<RawImage>().texture = Resources.Load<Texture>("deathEarth");
         }
-        print("End");
+        print("End2");
     }
 }
