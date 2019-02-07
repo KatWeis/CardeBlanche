@@ -138,7 +138,7 @@ public class HideHand : MonoBehaviour{
         for (int i = 0; i < hand.transform.childCount; i++)
         {
             hand.transform.GetChild(i).GetComponent<Card_UI>().selected = false;
-            //hand.transform.GetChild(i).GetComponent<Card_UI>().SendMessage("ClearHighlight");
+            hand.transform.GetChild(i).GetComponent<Card_UI>().SendMessage("ClearHighlight");
             hand.transform.GetChild(i).position = new Vector3(hand.transform.GetChild(i).position.x, 
                 hand.transform.GetChild(i).GetComponent<Card_UI>().inactiveY, hand.transform.GetChild(i).position.z);
         }

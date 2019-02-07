@@ -95,8 +95,9 @@ public class Card_UI : MonoBehaviour {
     /// </summary>
     public void StopHover()
     {
-        if (selected || !hhScript.IsHandVis) return;
+        if (selected || hhScript.IsHandVis == false) return;
         hovered = false;
+        Debug.Log(hhScript.IsHandVis);
         startTime = Time.time;
         HoverHighlight();
         StopCoroutine("BumpCard");
