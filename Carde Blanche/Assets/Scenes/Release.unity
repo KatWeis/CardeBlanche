@@ -1336,16 +1336,6 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114782639905619480, guid: 2b7aba4343e5c734e8dd4c26a23bc9f1,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224735516887056846, guid: 2b7aba4343e5c734e8dd4c26a23bc9f1,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b7aba4343e5c734e8dd4c26a23bc9f1, type: 2}
   m_IsPrefabAsset: 0
