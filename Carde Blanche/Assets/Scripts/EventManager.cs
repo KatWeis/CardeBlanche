@@ -90,7 +90,12 @@ public class EventManager : MonoBehaviour {
 
     public void DeathStar()
     {
-        Instantiate(deathStar, new Vector3(12f, 0, 0), Quaternion.identity);
+        Vector3 cam = GameObject.Find("Main Camera").transform.position;
+        cam.y = 0;
+        cam = cam.normalized;
+        Vector3 d = Vector3.Cross(cam, Vector3.up);
+        d = d.normalized * 12.0f;
+        Instantiate(deathStar, d, Quaternion.identity);
         handScript.ToggleHand(false, 3f);
     }
 

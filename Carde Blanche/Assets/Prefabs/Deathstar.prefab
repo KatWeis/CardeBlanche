@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4893847007642090}
   - component: {fileID: 20199569896694984}
-  - component: {fileID: 81149022012811312}
   - component: {fileID: 124586941947597926}
   - component: {fileID: 114918982153727808}
   m_Layer: 0
@@ -194,13 +193,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1372636592878324}
   m_Mesh: {fileID: 4300000, guid: 250d637b026b0fc4a84fd2b7d7e92592, type: 3}
---- !u!81 &81149022012811312
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1338206655015506}
-  m_Enabled: 1
 --- !u!108 &108109285428983138
 Light:
   m_ObjectHideFlags: 1
