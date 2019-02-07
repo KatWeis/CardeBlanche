@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33260820667134616}
   - component: {fileID: 23857581484491828}
   - component: {fileID: 114716284336249206}
+  - component: {fileID: 123608732504445660}
   m_Layer: 0
   m_Name: EarthExplosion
   m_TagString: Untagged
@@ -95,3 +96,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f859f7b9f316341bbdd6ca1be70a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!123 &123608732504445660
+LensFlare:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1610427624466734}
+  m_Enabled: 1
+  m_Flare: {fileID: 12100000, guid: 09ebe82dbd1113c3d000dc0b8d76c639, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Brightness: 1
+  m_FadeSpeed: 20
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 6
+  m_Directional: 0

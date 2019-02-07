@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4058336504629210}
   - component: {fileID: 33546038071285610}
   - component: {fileID: 23210904308597206}
-  - component: {fileID: 65542709354531830}
   - component: {fileID: 114572809843479150}
+  - component: {fileID: 123832682920821882}
   m_Layer: 0
   m_Name: Lazer
   m_TagString: Untagged
@@ -85,18 +85,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1411330236101548}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65542709354531830
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1411330236101548}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114572809843479150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,3 +98,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   lifetime: 3
+--- !u!123 &123832682920821882
+LensFlare:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1411330236101548}
+  m_Enabled: 1
+  m_Flare: {fileID: 12100000, guid: 1e8337eec7b3f904bb8e0ff0e96d7ac5, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Brightness: 0.5
+  m_FadeSpeed: 20
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 6
+  m_Directional: 0

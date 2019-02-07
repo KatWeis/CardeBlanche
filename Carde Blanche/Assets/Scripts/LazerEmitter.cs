@@ -17,7 +17,9 @@ public class LazerEmitter : MonoBehaviour {
         while(true)
         {
             GameObject o = Instantiate(lazer, Vector3.zero, Quaternion.identity);
-            o.GetComponent<Renderer>().material.SetColor("_Color", CreateColor());
+            Color c = CreateColor();
+            o.GetComponent<Renderer>().material.SetColor("_Color", c);
+            o.GetComponent<LensFlare>().color = c;
             yield return new WaitForSeconds(spawnRate);
         }
     }
