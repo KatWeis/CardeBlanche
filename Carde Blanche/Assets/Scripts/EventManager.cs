@@ -20,7 +20,7 @@ public class EventManager : MonoBehaviour {
     public Material curedEarth;
 
     public GameObject mario;
-
+    public GameObject cars;
     public GameObject explosion;
 
     public ParticleSystem pSys;
@@ -86,6 +86,10 @@ public class EventManager : MonoBehaviour {
         {
             CuredEarth();
         }
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            FlyingCar();
+        }
     }
 
     public void DeathStar()
@@ -142,6 +146,16 @@ public class EventManager : MonoBehaviour {
         GameObject.Find("Earth").GetComponent<Renderer>().material = deadEarth;
         ParticleSystem.MainModule main = pSys.main;
         main.startColor = Color.red;
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Tree");
+        foreach(GameObject obj in objs)
+        {
+            GameObject.Destroy(obj);
+        }
+        objs = GameObject.FindGameObjectsWithTag("Forest");
+        foreach (GameObject obj in objs)
+        {
+            GameObject.Destroy(obj);
+        }
         pSys.Stop();
         pSys.Play();
         handScript.ToggleHand(false, -1f);
@@ -213,6 +227,12 @@ public class EventManager : MonoBehaviour {
         GameObject[] spawns = GameObject.FindGameObjectsWithTag("SpawnPoint");
         IEnumerator co = Explosions(spawns);
         StartCoroutine(co);
+        handScript.ToggleHand(false, 3f);
+    }
+
+    public void FlyingCar()
+    {
+        Instantiate(cars, new Vector3(0f, 0f, 0f), Quaternion.identity);
         handScript.ToggleHand(false, 3f);
     }
 
