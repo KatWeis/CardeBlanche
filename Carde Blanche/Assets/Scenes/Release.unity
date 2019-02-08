@@ -5983,6 +5983,7 @@ MonoBehaviour:
   deadEarth: {fileID: 0}
   curedEarth: {fileID: 0}
   mario: {fileID: 0}
+  cars: {fileID: 0}
   explosion: {fileID: 0}
   pSys: {fileID: 0}
 --- !u!114 &1821164907
@@ -6173,6 +6174,7 @@ MonoBehaviour:
   deadEarth: {fileID: 2100000, guid: cb73e8388dd89c64b8715ac737c9377c, type: 2}
   curedEarth: {fileID: 2100000, guid: 41fc5b62ab7a8804b80bd86aea3afa47, type: 2}
   mario: {fileID: 1396769221016772, guid: 83668d23bfc2e4e45961ea4e4ea750bd, type: 2}
+  cars: {fileID: 1908676063958432, guid: 80eea94fe336fa142b405ec2992e7de8, type: 2}
   explosion: {fileID: 1112970226493486, guid: d8746cc83c556db4eb521e83eef16bf7, type: 2}
   pSys: {fileID: 1938480146}
 --- !u!1001 &1895276157
