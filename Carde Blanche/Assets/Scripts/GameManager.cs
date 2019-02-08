@@ -257,7 +257,7 @@ public class GameManager : MonoBehaviour {
         print("Start");
         if(ending == "Death")
         {
-            yield return new WaitForSeconds(8f);
+            yield return new WaitForSeconds(12f);
         }
         else
         {
