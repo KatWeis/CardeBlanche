@@ -157,9 +157,10 @@ public class GameManager : MonoBehaviour {
                     //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                     hideHand.ToggleHand(false, 40f);
                     SetEnding("Death");
+                    isDeath = true;
                 }
 
-                if(currentCombo == maxCombo)
+                if(!isDeath && currentCombo == maxCombo)
                 {
                     hideHand.ToggleHand(false, -1f);
                     if (nature > tech)
@@ -282,18 +283,33 @@ public class GameManager : MonoBehaviour {
 
     void End(string ending)
     {
+        AudioClip natureOST = Resources.Load<AudioClip>("Audio/NatureEndOST");
+        AudioClip techOST = Resources.Load<AudioClip>("Audio/TechEndOST");
+        AudioClip deathOST = Resources.Load<AudioClip>("Audio/DeathEndOST");
+        GameObject[] audio = GameObject.FindGameObjectsWithTag("EmitsAudio");
+        foreach (GameObject g in audio)
+        {
+            g.GetComponent<AudioSource>().Stop();
+        }
         image.SetActive(true);
         if (ending == "Nature")
         {
             image.GetComponent<RawImage>().texture = Resources.Load<Texture>("natureEarth");
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().clip = natureOST;
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
+
         }
         else if (ending == "Tech")
         {
             image.GetComponent<RawImage>().texture = Resources.Load<Texture>("techEarth");
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().clip = techOST;
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
         }
         else if (ending == "Death")
         {
             image.GetComponent<RawImage>().texture = Resources.Load<Texture>("deathEarth");
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().clip = deathOST;
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
         }
         button.SetActive(true);
     }
