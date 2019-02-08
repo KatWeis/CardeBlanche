@@ -138,6 +138,11 @@ Tech
 Medi-Gun
 MEDIC! DOCTOR! This is the tool you need to support the Heavies in your life.
 
+1519
+DEATH
+Death Ray
+The charging green thing coming from the Death Star is the ray. Now here comes the death.
+
 1617
 Nature
 Winged Humans
